@@ -33,7 +33,8 @@ After some trial and errors with some other approach to resolve the issue. The b
    
 ### VPC and internet access ###
 
-If your Lambda function requires access to any resources that exists in a VPC such as a RDS database, you need to configure the Lambda function to use VPC as well. If 
+By default, a Lambda function is not configured with a vpc and the Lambda can make any internet request during its execution.
+However, if your Lambda function requires access to any resources that exists in a VPC such as a RDS database, you need to configure the Lambda function to use VPC as well. and if it happens that your Lambda function need to make an internet request to some external service as well, you will need to configure the VPC subnet to use a NAT gateway to allow internet access within the VPC.
 
 ### Out of space for lambda functions ###
 ### API Gateway timeout limit ###
