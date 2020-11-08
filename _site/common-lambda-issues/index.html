@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Common issues of AWS Lambda | Sing Mak</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Common issues of AWS Lambda" />
+<meta name="author" content="Sing Mak" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Now that I have already developed multiple API services with AWS Lambda, I know how it’s like to develop a Lambda service. Indeed, AWS Lambda is easy to get started for people who didn’t have any backend development experience, since we don’t need to know anything about how to set up a server and just need to focus on implementing the API and we can just deploy it easily with Serverless framework or even just do the coding on AWS web console. However, as I have a bit more experience with Lambda, I realize that Lambda is not as easy as it looks like, while Lambda make it easy to deploy an API service without setting up a new server, it also has some limitations and introduce some new challenges and issues that I need to solve during the development of the Lambda services. Here are a list of common issues and how to solve them:" />
+<meta property="og:description" content="Now that I have already developed multiple API services with AWS Lambda, I know how it’s like to develop a Lambda service. Indeed, AWS Lambda is easy to get started for people who didn’t have any backend development experience, since we don’t need to know anything about how to set up a server and just need to focus on implementing the API and we can just deploy it easily with Serverless framework or even just do the coding on AWS web console. However, as I have a bit more experience with Lambda, I realize that Lambda is not as easy as it looks like, while Lambda make it easy to deploy an API service without setting up a new server, it also has some limitations and introduce some new challenges and issues that I need to solve during the development of the Lambda services. Here are a list of common issues and how to solve them:" />
+<link rel="canonical" href="http://localhost:4000/common-lambda-issues/" />
+<meta property="og:url" content="http://localhost:4000/common-lambda-issues/" />
+<meta property="og:site_name" content="Sing Mak" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-08T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Common issues of AWS Lambda" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@DevSingMak" />
+<script type="application/ld+json">
+{"headline":"Common issues of AWS Lambda","dateModified":"2020-11-08T00:00:00+08:00","url":"http://localhost:4000/common-lambda-issues/","datePublished":"2020-11-08T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/common-lambda-issues/"},"author":{"@type":"Person","name":"Sing Mak"},"description":"Now that I have already developed multiple API services with AWS Lambda, I know how it’s like to develop a Lambda service. Indeed, AWS Lambda is easy to get started for people who didn’t have any backend development experience, since we don’t need to know anything about how to set up a server and just need to focus on implementing the API and we can just deploy it easily with Serverless framework or even just do the coding on AWS web console. However, as I have a bit more experience with Lambda, I realize that Lambda is not as easy as it looks like, while Lambda make it easy to deploy an API service without setting up a new server, it also has some limitations and introduce some new challenges and issues that I need to solve during the development of the Lambda services. Here are a list of common issues and how to solve them:","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/skins/default.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Sing Mak" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  common-issues-of-aws-lambda">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/">Home</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/">Sing Mak</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Hello, I am Sing Mak, a Hong Kong based software engineer.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Common issues of AWS Lambda
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><div class="author-info"><div class="author-name">
+        <em>by</em> <span class="p-name">Sing Mak</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
+          </li></ul>
+    <time class="page-date dt-published" datetime="2020-11-08T00:00:00+08:00"><a class="u-url" href="">November 8, 2020</a>
+</time>
+
+  </div>
+</div>
+
+        
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>Now that I have already developed multiple API services with AWS Lambda, I know how it’s like to develop a Lambda service.
+Indeed, AWS Lambda is easy to get started for people who didn’t have any backend development experience, since we don’t need to know anything about how to set up a server and just need to focus on implementing the API and we can just deploy it easily with <a href="https://www.serverless.com">Serverless framework</a> or even just do the coding on AWS web console. However, as I have a bit more experience with Lambda, I realize that Lambda is not as easy as it looks like, while Lambda make it easy to deploy an API service without setting up a new server, it also has some limitations and introduce some new challenges and issues that I need to solve during the development of the Lambda services. Here are a list of common issues and how to solve them:</p>
+
+<h3 id="too-many-resources">Too many resources</h3>
+
+<p>When I developed my first Lambda service, it didn’t take long for me to add like 30 APIs to the service. It was all good when I was testing locally, until I tried to deploy it and this error popped up on the terminal:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error --------------------------------------------------
+
+The CloudFormation template is invalid: Template format error: Number of resources, 201, is greater than maximum allowed, 200
+</code></pre></div></div>
+<p>The reason is that CloudFormation has a limit of 200 resources per stack.
+Each Lambda service you deployed with Serverless framework is a Cloud Formation stack and for each API that is deployed, multiple AWS resources are created during the deployment of the service, such as:</p>
+<ul>
+  <li>the lambda function</li>
+  <li>the lambda version</li>
+  <li>API gateway</li>
+  <li>cloud watch log</li>
+  <li>IAM role</li>
+</ul>
+
+<p>So it’s not surprising that after adding around 30 API, the stack of the service would take over 200 AWS resources.</p>
+
+<p>After some trial and errors with some other approaches to resolve the issue. The best and most reliable way to resolve the issue, is to implement the micro-service approach. We can refactor and split the large service to into several smaller ones. After that, we can use <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html">API Gateway custom domain</a> to map all the micro-services to different paths under same the domain.</p>
+
+<h3 id="vpc-and-internet-access">VPC and internet access</h3>
+
+<p>By default, a Lambda function is not configured with a VPC and the Lambda can make any internet request during its execution.
+However, if your Lambda function requires access to any resources that exists in a VPC such as an RDS database, you need to configure the Lambda function to use VPC as well. And if it happens that your Lambda function need to make an internet request to some external service as well, you will need to configure the VPC subnet to use a NAT gateway to allow internet access within the VPC.</p>
+
+<h3 id="total-lambda-functions-storage-size">Total Lambda functions storage size</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>An error occurred: TestLambdaFunction – Code storage limit exceeded. (Service: AWSLambda; Status Code: 400; Error Code: CodeStorageExceededException; Request ID: 05d3ae68-e7f6-11e8-948e-41c95096380e).
+</code></pre></div></div>
+<p>After deploying multiple Lambda services and a dozen functions, you may see this error then you try to deploy a new version of your Lambda service. The reason is that there’s a limit of storage for Lambda functions, which is <strong>75 GB</strong>. Surprisingly, it’s not hard to reach this limit, especially if you enabled versioning for your Lambda functions. By default, every time you deploy your Lambda service, a new version of each Lambda functions will be created and so if you deploy a large service with many APIs and a lot of dependencies, you can reach the storage limit fairly quickly. In my experience, if we deploy our Lambda functions with Serverless framework, the versioning feature is not really that useful since most likely we have already checked in our codes in our own version control system. Therefore, to resolve the storage limit issues, you need to do 2 things:</p>
+<ul>
+  <li>remove all old versions of your Lambda service from AWS, you can use <a href="https://www.serverless.com/plugins/serverless-prune-plugin">serverless-prune-plugin</a> to clean up the old versions of</li>
+  <li>Turn off versioning of your Lambda service in the <strong>serverless.yml</strong>
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">provider</span><span class="pi">:</span>
+  <span class="na">versionFunctions</span><span class="pi">:</span> <span class="no">false</span> <span class="c1"># optional, default is true</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="lambda-function-package-size-limit">Lambda function package size limit</h3>
+<p>There is a hard limit for how big of your Lambda function package, which is <strong>50 MB</strong> for compressed deployment package and uncompressed size of the package cannot be over <strong>250</strong>. You can experience this issue when you function depends on some large library such as Oracle DB client. The only way to get around this is to keep your function small, take good care of the dependencies of your Lambda functions.</p>
+<ul>
+  <li>Use <a href="https://github.com/serverless-heaven/serverless-webpack">Serverless Webpack</a>, by using Webpack, you can be sure that the final deployment package will only include the codes and libraries that your function actually depends on.</li>
+  <li>Exclude AWS-SDK, the Lambda runtime already has AWS-SDK, there’s no need to include AWS-SDK in the deployment package.</li>
+  <li>If you need to generate PDF with <strong><a href="https://github.com/puppeteer/puppeteer">Puppeteer</a></strong>, use <strong>puppeteer-core</strong> and <strong><a href="https://github.com/alixaxel/chrome-aws-lambda">chrome-aws-lambda</a></strong> instead to keep your function small.</li>
+</ul>
+
+<h3 id="execution-timeout-limit">Execution timeout limit</h3>
+<p>If you are developing HTTP API with Lambda, make sure that the execution won’t exceed 30 secs since it’s the limit of API Gateway. For the Lambda function itself, the timeout limit is 15 minutes, so if the operation of the function can exceed this amount of time, you probably cannot implement it with Lambda or you need to split the Lambda function into several Lambda functions that require smaller amount of time to do the task and connect them together with the likes of <a href="https://aws.amazon.com/tw/step-functions/">step functions</a>.</p>
+
+<h3 id="persisting-connection-with-external-services-db-tcp-etc">Persisting connection with external services (DB, TCP, etc)</h3>
+<p>While it’s a good practice to keep the DB / TCP connections around for a normal backend server so that several API requests can share the same connections and reduce the overhead of connecting again and again, it’s very hard to achieve in Lambda. 
+I had a lot of issue with this when I tried to share the same DB connection with multiple requests with <a href="http://knexjs.org/">Knex</a>. The problem was that AWS can freeze the container of your Lambda function any time after it’s not used for a while, the connection with the DB can be dropped. What’s worse is that the variables that you keep in the context level of the function is also frozen. Those variables include the status of the DB connection. So next time when the Lambda function was requested again, AWS resumes the container and at this point, the context of the function was still keeping the same status of the DB connection that the function executed previously, which was connecting. Knex was confused and didn’t know that the connection was dropped and couldn’t try to connect again and just returned an error when the Lambda function tried to access the DB. I kept scratching my head wondering why sometimes the Lambda function failed to connect with the DB randomly. I ended up resolving the issue by creating a new connection with the DB for every Lambda request and closing the connection when the execution of Lambda finished.</p>
+
+<p>I hope this blog post gives you some ideas of what kind of issues that you may face when you are developing a Lambda function and some guidance on how to solve them.</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcommon-lambda-issues%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Common+issues+of+AWS+Lambda%20http%3A%2F%2Flocalhost%3A4000%2Fcommon-lambda-issues%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcommon-lambda-issues%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Common+issues+of+AWS+Lambda&url=http%3A%2F%2Flocalhost%3A4000%2Fcommon-lambda-issues%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/new-blog/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> New blog
+
+      </span>
+    </a>
+  
+
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2020 Sing Mak. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

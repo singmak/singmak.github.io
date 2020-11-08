@@ -1,16 +1,14 @@
 ---
 layout: post
-title: Common issues on AWS Lambda
+title: Common issues of AWS Lambda
 ---
 
 Now that I have already developed multiple API services with AWS Lambda, I know how it's like to develop a Lambda service.
-Indeed, AWS Lambda is easy to get started for people like me, who didn't have any backend development experience, since I don't need to know anything about how a server should work and just need to focus on implementing the API with the language that I know already (JavaScript) and I can just deploy it easily with [Serverless framework](https://www.serverless.com). However, as I have a bit more experience with Lambda, I realize that Lambda is not as easy as it looks like, while Lambda make it easy to deploy an API service without setting up a new server, it also has some limitations and introduce some new challenges and issues that I need to solve during the development of the Lambda services.
-
-Here are a list of common issues and summary of how to solve them:
+Indeed, AWS Lambda is easy to get started for people who didn't have any backend development experience, since we don't need to know anything about how to set up a server and just need to focus on implementing the API and we can just deploy it easily with [Serverless framework](https://www.serverless.com) or even just do the coding on AWS web console. However, as I have a bit more experience with Lambda, I realize that Lambda is not as easy as it looks like, while Lambda make it easy to deploy an API service without setting up a new server, it also has some limitations and introduce some new challenges and issues that I need to solve during the development of the Lambda services. Here are a list of common issues and how to solve them:
 
 ### Too many resources ###
 
-I have no concept of micro-service when I develop my first Lambda service. It doesn't take long for me to add like 30 APIs to the service. It was all good when I was testing locally, until I tried to deploy it and this error popped up on the terminal:
+When I developed my first Lambda service, it didn't take long for me to add like 30 APIs to the service. It was all good when I was testing locally, until I tried to deploy it and this error popped up on the terminal:
 ```
 Error --------------------------------------------------
 
@@ -53,10 +51,10 @@ There is a hard limit for how big of your Lambda function package, which is **50
 - If you need to generate PDF with **[Puppeteer](https://github.com/puppeteer/puppeteer)**, use **puppeteer-core** and **[chrome-aws-lambda](https://github.com/alixaxel/chrome-aws-lambda)** instead to keep your function small.
 
 ### Execution timeout limit ###
-If you are developing HTTP API with Lambda, make sure the execution won't exceed 30 secs since it's the limit of API Gateway. For the Lambda function itself, the timeout limit is 15 minutes, so if the operation of the function can exceed this amount time, mostly likely you cannot implement it with Lambda.
+If you are developing HTTP API with Lambda, make sure that the execution won't exceed 30 secs since it's the limit of API Gateway. For the Lambda function itself, the timeout limit is 15 minutes, so if the operation of the function can exceed this amount of time, you probably cannot implement it with Lambda or you need to split the Lambda function into several Lambda functions that require smaller amount of time to do the task and connect them together with the likes of [step functions](https://aws.amazon.com/tw/step-functions/).
 
 ### Persisting connection with external services (DB, TCP, etc) ###
 While it's a good practice to keep the DB / TCP connections around for a normal backend server so that several API requests can share the same connections and reduce the overhead of connecting again and again, it's very hard to achieve in Lambda. 
-I had a lot of issue with this when I tried to share the same DB connection with multiple requests with [Knex](http://knexjs.org/). The problem was that AWS can freeze the container of your Lambda function any time after it's not used for a while, the connection with the DB can be dropped. What's worse is that the variables that you keep in the context level of the function is also frozen. Those variables include the status of the DB connection. So next time when the Lambda function was requested again, AWS resumes the container and at this point, the context of the function was still keeping the same status of the DB connection that the function executes previously, which was connecting. Knex was confused and didn't know that the connection was dropped and didn't try to connect again and just returned an error when the Lambda functino tried to access the DB. I end up resolving the issue by creating a new connection with the DB for every Lambda request. 
+I had a lot of issue with this when I tried to share the same DB connection with multiple requests with [Knex](http://knexjs.org/). The problem was that AWS can freeze the container of your Lambda function any time after it's not used for a while, the connection with the DB can be dropped. What's worse is that the variables that you keep in the context level of the function is also frozen. Those variables include the status of the DB connection. So next time when the Lambda function was requested again, AWS resumes the container and at this point, the context of the function was still keeping the same status of the DB connection that the function executed previously, which was connecting. Knex was confused and didn't know that the connection was dropped and couldn't try to connect again and just returned an error when the Lambda function tried to access the DB. I kept scratching my head wondering why sometimes the Lambda function failed to connect with the DB randomly. I ended up resolving the issue by creating a new connection with the DB for every Lambda request and closing the connection when the execution of Lambda finished.
 
-I hope this blog post gives you some ideas of what kind of issues that you may face when you are developing a Lambda function and some guidance on how to resolve them.
+I hope this blog post gives you some ideas of what kind of issues that you may face when you are developing a Lambda function and some guidance on how to solve them.
