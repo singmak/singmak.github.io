@@ -3,9 +3,7 @@ layout: post
 title: Trying Lambda destinations
 ---
 
-Recently I learned about Lambda Destinations. I didn't know what it is, I thought it can be a good alternative with SNS when I only need to connect 2 Lambda functions. The usage is straightforward: https://www.serverless.com/blog/lambda-destinations
-
-The idea is to handle the success and failure result of a Lambda function on other Lambda functions:
+Recently I learned about [Lambda Destinations](https://www.serverless.com/blog/lambda-destinations). I didn't know what it is, I thought it can be a good alternative with SNS when I only need to connect 2 Lambda functions. The usage is straightforward. The idea is to handle the success and failure result of a Lambda function on other Lambda functions:
 ```
 functions:
   helloStarting:
