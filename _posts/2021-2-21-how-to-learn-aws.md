@@ -11,7 +11,7 @@ This blog post is a very short overview about how to learn AWS as a developer ba
 
 You may ask: Why learn AWS if I am just a developer? I am just a developer. I am not a DevOps guy, I am not an infrastructure guy, I am not a cloud architect. I only want to deal with codes.
 
-If you are a developer in a big team, this is probably true, since there would be a DevOps guy or/and cloud engineer/architects who do these jobs. However, when you are in a small team, which may not have the budget to hire another guy to do the DevOps stuff and configure the infrastructure. So you will be the guy to do these things and you have to learn it. More and more companies are hosting their services on the cloud nowadays, whether it’s AWS, Azure or Google. And AWS is the leading cloud provider now. Therefore, if you are a full stack developer on a small team, it's very advantageous to learn AWS. It can definitely increase your value as a full stack developer.
+If you are a developer in a big team, this is probably true, since there would be a DevOps guy or/and cloud engineer/architects who do the jobs of managing the AWS resources and the deployment of the projects. However, when you are in a small team, which may not have the budget to hire another guy to do the DevOps stuff and configure the infrastructure. So you will be the guy to do these things and you have to learn it. More and more companies are hosting their services on the cloud nowadays, whether it’s AWS, Azure or Google. And AWS is the leading cloud provider now. Therefore, if you are a full stack developer on a small team, it's very advantageous to learn AWS. It can definitely increase your value as a full stack developer.
 
 ## Where to start? ##
 
