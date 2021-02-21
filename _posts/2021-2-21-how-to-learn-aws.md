@@ -25,6 +25,8 @@ AWS is a great platform and it’s very beginner-friendly. However, there are st
 
 The best way to learn is by hand-on experience. If you use AWS at work, it's great. If not, you can always create your own AWS account and work on some small side projects. Also, you should follow some blogs to get the latest updates of AWS.
 
+There's not much details in this post but I still hope that you find something useful :)
+
 ## Learning resources recommendations ##
 
 - [AWS](https://aws.amazon.com)
