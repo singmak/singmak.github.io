@@ -5,7 +5,7 @@ title: How to learn AWS as a developer
 
 ## Gong Hei Fat Choi and Happy Chinese new year! ##
 
-My first post in 2021. I started this blog back in 2020 October and I kind of forgot it about after a few posts. My new year resolution is that I will blog more often this year.
+My first post in 2021. I started this blog back in 2020 October and I kind of forgot about it after a few posts. My new year resolution is that I will blog more often this year.
 
 This blog post is a very short overview about how to learn AWS as a developer based on my personal experience.
 
