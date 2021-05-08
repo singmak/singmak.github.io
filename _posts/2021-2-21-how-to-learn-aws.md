@@ -3,8 +3,6 @@ layout: post
 title: How to learn AWS as a developer
 ---
 
-My first post in 2021. I started this blog back in 2020 October and I kind of forgot about it after a few posts. My new year resolution is that I will blog more often this year.
-
 This blog post is a very short overview about how to learn AWS as a developer based on my personal experience.
 
 You may ask: Why learn AWS if I am just a developer? I am just a developer. I am not a DevOps guy, I am not an infrastructure guy, I am not a cloud architect. I only want to deal with codes.
