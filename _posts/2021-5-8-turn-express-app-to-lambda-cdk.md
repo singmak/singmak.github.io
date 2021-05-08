@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Deploy a Lambda function with CDK
+title: Deploy an AWS Lambda function with AWS CDK
 ---
 
 There are many ways to create and configure the infrastructures of our applications on AWS, either it's with the console, AWS Cli or AWS Cloudformation. With AWS CDK, we can create AWS Cloudformation stacks with the power of programming languages. AWS CDK support multiple programming languages and in this blog post, I am going to demostrate how to turn a simple Express app API written in Typescript into an AWS Lambda function with AWS CDK.
