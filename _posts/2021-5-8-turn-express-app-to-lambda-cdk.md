@@ -3,12 +3,10 @@ layout: post
 title: Deploy a Lambda function with CDK
 ---
 
-There are many ways to create and configure the infrastructures of our applications on AWS, either it's with the console, AWS Cli or AWS Cloudformation.
+There are many ways to create and configure the infrastructures of our applications on AWS, either it's with the console, AWS Cli or AWS Cloudformation, and with AWS CDK, we can create AWS Cloudformation stacks with the power of programming languages. AWS CDK support multiple programming languages and in this blog post, I am going to demostrate how to turn a simple Express app API written in Typescript into an AWS Lambda function with AWS CDK.
 
 Using AWS Cloudformation is a good way to maintain our infrastructures as code. However, writing a Cloudformation template is not easy. Most of my experience with AWS Cloudformation is with Serverless Framework because when I deploy an AWS Lambda service with Serverless Framework, it deploys the Lambda service as a Cloudformation stack and we don't need to write a single line of AWS CloudFormation template. It saves us so much work. What's even more great about Serverless Framework is that we can override the generated Cloudformation resources or add additional resources in the stack in the serverless.yml. Outside of Serverless Framework, I mostly just use the AWS console or AWS Cli to manually configure the AWS intrastructure... To be honest I was put off by the huge amount of lines of codes in the Cloudformation templates that are required to define a stack and all the template syntax that I need to learn...
 But not anymore! Now I know that there's a much easier way to create a Cloudformation stack for developers, which is AWS CDK (AWS Cloud Development Kit).
-
-With AWS CDK, we can create AWS Cloudformation stacks with the power of programming languages. AWS CDK support multiple programming languages and in this blog post, I am going to demostrate how to turn a simple Express app API written in Typescript into an AWS Lambda function with AWS CDK.
 
 ## Prerequisite
 - AWS Cli environment setup
