@@ -169,7 +169,7 @@ export const processMessage = async (event: SQSEvent) => {
 ```
 
 ## Build and deploy the stack!!!
-build the lambda handler
+First you need to build the lambda handler functions
 ```sh
 npm run build
 ```
