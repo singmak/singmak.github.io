@@ -14,6 +14,7 @@ But not anymore! Now I know that there's a much easier way to create a Cloudform
 - Node.js version 14+
 - Knowledge of typescript
 - Basic knowledge of AWS Lambda
+- Knowledge of AWS Lambda
 
 ## Starting point
 First of all, please download the example project from [here](https://github.com/singmak/cdk-express-example).
