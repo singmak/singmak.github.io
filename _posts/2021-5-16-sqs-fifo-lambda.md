@@ -51,8 +51,8 @@ export class MyOrderedMessageProcessServiceStack extends cdk.Stack {
   }
 }
 ```
-### Updates the stack to provision all the resources
-Now update `lib/my-ordered-message-process-service-stack.ts` to look like this:
+### Update the stack to provision all the resources
+Now update `lib/my-ordered-message-process-service-stack.ts` to be like this:
 ```typescript
 import * as cdk from '@aws-cdk/core';
 import * as sns from '@aws-cdk/aws-sns';
