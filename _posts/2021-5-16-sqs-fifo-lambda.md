@@ -3,14 +3,13 @@ layout: post
 title: "AWS CDK Example: Process ordered events with AWS Lambda, SQS FIFO and SNS FIFO"
 ---
 
+There are many cases in that services need to react based on the events published by another service. And in some cases, the order of the processing of the messages is important. For example, think about bank transactions, the deposit, transfer, withdrawal events need to be processed in order or there may not be enough money in the bank account to withdraw or transfer the money. In this tutorial, I am going to demonstrate how to implement an infrastructure that can handles events produced by one system and consumed by another system in order with AWS CDK, AWS Lambda, Amazon SQS FIFO queues, and Amazon SNS FIFO.
+
 ## Prerequisite
 - AWS CLI environment [setup](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 - Node.js version 12+
 - Basic knowledge of typescript
 - Basic knowledge of AWS Lambda
-
-There are many cases in that services need to react based on the events published by another service. And in some cases, the order of the processing of the messages is important. For example, think about bank transactions, the deposit, transfer, withdrawal events need to be processed in order or there may not be enough money in the bank account to withdraw or transfer the money. In this tutorial, I am going to demonstrate how to implement an infrastructure that can handles events produced by one system and consumed by another system in order with AWS CDK, AWS Lambda, Amazon SQS FIFO queues, and Amazon SNS FIFO.
-
 ## Setting up the project
 
 ### Install AWS CDK
