@@ -10,8 +10,8 @@ There are many cases in that services need to react based on the events publishe
 - Node.js version 12+
 - Basic knowledge of typescript
 - Basic knowledge of AWS Lambda
-## Setting up the project
 
+## Setting up the project
 ### Install AWS CDK
 If you have not installed AWS CDK, you can install it by:
 ```sh
