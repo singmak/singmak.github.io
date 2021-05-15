@@ -188,7 +188,8 @@ Since we provisioned a POST API `/messages` to publishing the messages to the qu
 For example, I use [Thunder client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) to make an HTTP request with a JSON body like this
 ![test example](/assets/images/cdk-test-publish-messages.png)
 
-You can check the logs and metrics for SNS and SQS on CloudWatch in the AWS console to check the results of the publishing and processing of the messages.
+You can check the logs and metrics for SNS and SQS on CloudWatch in the AWS console to check the results of the publishing and processing of the messages. If all works correctly, you should be able to see that the messages are processed one by one in sequences in the correct order from the Cloudwatch logs of the Lambda function that process the messages.
+![messages logs](/assets/images/messages-logs.png)
 
 ## Source code of this example
 [https://github.com/singmak/my-ordered-message-process-service](https://github.com/singmak/my-ordered-message-process-service)
