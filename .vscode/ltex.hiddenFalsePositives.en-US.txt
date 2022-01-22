@@ -1,2 +1,0 @@
-{"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QEach Lambda service you deployed with Serverless framework is a Cloud Formation stack and for each API that is deployed, multiple AWS resources are created during the deployment of the service, such as:\nthe lambda function\nthe lambda version\nAPI gateway\ncloud watch log\nIAM role\\E$"}
-{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QI had a lot of issue with this, when I tried to share the same DB connection with multiple requests with Knex library\\E$"}
