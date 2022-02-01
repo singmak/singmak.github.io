@@ -5,7 +5,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Hidden from '@mui/material/Hidden';
 import Zoom from '@mui/material/Zoom';
 import Social from './Social';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -49,8 +48,7 @@ export default function HeroSection() {
             </Box>
           </Grid>
         </Zoom>
-        <Hidden xsDown><Grid item><Social direction={'column'} /></Grid></Hidden>
-
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' }}}><Social direction={'column'} /></Grid>
       </Grid>
     </Container>
   </Paper>;
