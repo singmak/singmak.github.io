@@ -1,5 +1,8 @@
-import * as React from 'react'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import * as React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import { Link } from "gatsby-theme-material-ui";
+import { Typography } from "@mui/material";
+
 import {
   container,
   heading,
@@ -7,7 +10,7 @@ import {
   navLinkItem,
   navLinkText,
   siteTitle,
-} from './layout.module.css'
+} from './layout.module.css';
 
 const Layout = ({ pageTitle, children }) => {
   const data = useStaticQuery(graphql`
@@ -21,7 +24,8 @@ const Layout = ({ pageTitle, children }) => {
 `);
   return (
     <div className={container}>
-      <title>{pageTitle} | {data.site.siteMetadata.title}</title>
+      <Typography component='title'>{pageTitle} | {data.site.siteMetadata.title}</Typography>
+      <Typography component='header'></Typography>
       <header className={siteTitle}>{data.site.siteMetadata.title}</header>
       <nav>
         <ul className={navLinks}>

@@ -6,11 +6,19 @@ module.exports = {
     plugins: [
       "gatsby-plugin-image",
       "gatsby-plugin-sharp",
+      "gatsby-theme-material-ui",
       {
         resolve: "gatsby-source-filesystem",
         options: {
-          name: `blog`,
-          path: `${__dirname}/blog`,
+          name: `posts`,
+          path: `${__dirname}/posts`,
+        }
+      },
+      {
+        resolve: "gatsby-source-filesystem",
+        options: {
+          name: `images`,
+          path: `${__dirname}/src/images`,
         }
       },
       "gatsby-plugin-mdx",
