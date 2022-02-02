@@ -4,11 +4,9 @@ import MainLayout from '../components/MainLayout';
 
 const IndexPage = () => {
   return (
-    <div>
-      <MainLayout pageTitle={'Home'}>
-        <HeroSection />
-      </MainLayout>
-    </div>
+    <MainLayout pageTitle={''}>
+      <HeroSection />
+    </MainLayout>
   );
 };
 
