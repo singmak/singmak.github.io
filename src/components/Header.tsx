@@ -1,10 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Link } from 'gatsby-theme-material-ui';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/MenuOutlined';
@@ -16,10 +15,10 @@ import List from '@mui/material/List';
 import { Typography } from '@mui/material';
 
 const navigationLinks = [
-  { name: 'About', href: '' },
+  { name: 'About', href: '/' },
   // { name: "Projects", href: "" },
   // { name: "Resume", href: "" },
-  { name: 'Blog', href: '' },
+  { name: 'Blog', href: '/blog' },
 ];
 
 const linkStyle = {
@@ -41,21 +40,13 @@ export default function Header({ pageTitle }: {
   const [open, setOpen] = useState(false);
   const onOpen = useCallback(() => setOpen(true), [setOpen]);
   const onClose = useCallback(() => setOpen(false), [setOpen]);
+  console.log('siteData', siteData, siteData?.site?.siteMetadata?.title);
+  const siteTitle = useMemo(() => siteData?.site?.siteMetadata?.title, [siteData]);
   return (<AppBar position='sticky' color='default'>
     <Container maxWidth="md">
       <Toolbar disableGutters>
-        <Avatar sx={{
-          marginRight: 'auto',
-          color: 'white',
-          backgroundColor: 'black',
-          borderRadius: 0,
-          height: 'auto',
-          width: 'auto',
-          padding: 1,
-          fontSize: '1em',
-        }}>SING MAK</Avatar>
-        <Typography component='title'>{pageTitle} | {siteData.site.siteMetadata.title}</Typography>
-        <Typography component='header'>{siteData.site.siteMetadata.title}</Typography>
+        <Typography component='h1' sx={{ marginRight: 'auto'}}>{siteTitle}</Typography>
+        <Typography component='h1' sx={{ marginRight: 'auto'}}>{pageTitle}</Typography>
         <Box sx={{
           display: {
             xs: 'none',
