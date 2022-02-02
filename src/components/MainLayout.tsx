@@ -7,9 +7,7 @@ const MainLayout: React.FC<{ pageTitle: string }> = ({ pageTitle, children }) =>
     <div>
       <Header pageTitle={pageTitle} />
       <CssBaseline />
-      <main>
-        {children}
-      </main>
+      {children}
     </div>
   );
 };

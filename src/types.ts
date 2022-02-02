@@ -1,6 +1,8 @@
 export type MdxFrontmatter = {
   title: string,
   date: string,
+  description: string,
+  imageUrl?: string,
 };
 
 export type MdxNode = {
