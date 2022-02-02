@@ -45,7 +45,15 @@ export default function Header({ pageTitle }: {
   return (<AppBar position='sticky' color='default'>
     <Container maxWidth="md">
       <Toolbar disableGutters>
-        <Typography component='h1' sx={{ marginRight: 'auto'}}>{siteTitle}</Typography>
+        <Link
+          href="/"
+          color="textPrimary"
+          variant="button"
+          underline="none"
+          sx={{ marginRight: 'auto'}}
+        >
+          <Typography component='h1'>{siteTitle}</Typography>
+        </Link>
         <Typography component='h1' sx={{ marginRight: 'auto'}}>{pageTitle}</Typography>
         <Box sx={{
           display: {
