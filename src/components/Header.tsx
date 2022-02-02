@@ -50,11 +50,10 @@ export default function Header({ pageTitle }: {
           color="textPrimary"
           variant="button"
           underline="none"
-          sx={{ marginRight: 'auto'}}
         >
           <Typography component='h1'>{siteTitle}</Typography>
         </Link>
-        <Typography component='h1' sx={{ marginRight: 'auto'}}>{pageTitle}</Typography>
+        <Typography component='h1' sx={{ marginX: 'auto'}}>{pageTitle}</Typography>
         <Box sx={{
           display: {
             xs: 'none',
