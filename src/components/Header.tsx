@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { Link } from "gatsby-theme-material-ui";
+import { useStaticQuery, graphql } from 'gatsby';
+import { Link } from 'gatsby-theme-material-ui';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
@@ -12,19 +13,31 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRightOutlined';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import List from '@mui/material/List';
+import { Typography } from '@mui/material';
 
 const navigationLinks = [
-  { name: "About", href: "" },
+  { name: 'About', href: '' },
   // { name: "Projects", href: "" },
   // { name: "Resume", href: "" },
-  { name: "Blog", href: "" },
+  { name: 'Blog', href: '' },
 ];
 
 const linkStyle = {
   marginLeft: '20px',
 };
 
-export default function Header() {
+export default function Header({ pageTitle }: {
+  pageTitle: string,
+}) {
+  const siteData = useStaticQuery(graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`);
   const [open, setOpen] = useState(false);
   const onOpen = useCallback(() => setOpen(true), [setOpen]);
   const onClose = useCallback(() => setOpen(false), [setOpen]);
@@ -32,15 +45,17 @@ export default function Header() {
     <Container maxWidth="md">
       <Toolbar disableGutters>
         <Avatar sx={{
-          marginRight: "auto",
-          color: "white",
-          backgroundColor: "black",
+          marginRight: 'auto',
+          color: 'white',
+          backgroundColor: 'black',
           borderRadius: 0,
-          height: "auto",
-          width: "auto",
+          height: 'auto',
+          width: 'auto',
           padding: 1,
-          fontSize: "1em",
+          fontSize: '1em',
         }}>SING MAK</Avatar>
+        <Typography component='title'>{pageTitle} | {siteData.site.siteMetadata.title}</Typography>
+        <Typography component='header'>{siteData.site.siteMetadata.title}</Typography>
         <Box sx={{
           display: {
             xs: 'none',
@@ -54,6 +69,7 @@ export default function Header() {
               variant="button"
               underline="none"
               sx={linkStyle}
+              key={name}
             >
               {name}
             </Link>
@@ -78,12 +94,13 @@ export default function Header() {
       <Divider />
       <List>
         {navigationLinks.map(({ name, href }) => (
-          <ListItem>
+          <ListItem key={name}>
             <Link
               href={href}
               color="textPrimary"
               variant="button"
               underline="none"
+              key={name}
             >
               {name}
             </Link>

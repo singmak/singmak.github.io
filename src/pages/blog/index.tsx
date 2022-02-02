@@ -1,25 +1,26 @@
-import * as React from 'react'
-import { Link, graphql } from 'gatsby'
-import Layout from '../../components/layout'
+import * as React from 'react';
+import { Link, graphql, PageProps } from 'gatsby';
+import MainLayout from '../../components/MainLayout';
+import { AllMdx } from '../../types';
 
-const BlogPage = ({ data }) => {
+const BlogPage = ({ data }: PageProps<AllMdx>) => {
   return (
-    <Layout pageTitle="My Blog Posts">
+    <MainLayout pageTitle="My Blog Posts">
       {
         data.allMdx.nodes.map(node => (
           <article key={node.id}>
             <h2>
               <Link to={`/blog/${node.slug}`}>
-                {node.frontmatter.title}
+                {node?.frontmatter?.title}
               </Link>
             </h2>
-            <p>Posted: {node.frontmatter.date}</p>
+            <p>Posted: {node?.frontmatter?.date}</p>
           </article>
         ))
       }
-    </Layout>
-  )
-}
+    </MainLayout>
+  );
+};
 
 export const query = graphql`
   query {
@@ -34,6 +35,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default BlogPage
+export default BlogPage;

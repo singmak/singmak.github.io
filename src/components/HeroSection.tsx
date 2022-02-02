@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/no-unescaped-entities */
+import React, { useState, useEffect, FC } from 'react';
 import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -7,37 +8,39 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Zoom from '@mui/material/Zoom';
 import Social from './Social';
+import { styled } from '@mui/system';
 import { StaticImage } from 'gatsby-plugin-image';
-import { styled } from '@mui/material/styles';
 
-const HeroImage = styled(({ className }) => <StaticImage src="../images/hero.jpg" alt="Hero Image" className={className} />)``;
+const HeroImage = styled<FC<{ className?: string }>>(({ className }) => {
+  return <StaticImage className={className} src="../images/hero.jpg" alt="Hero Image"/>;
+})``;
 
 export default function HeroSection() {
   const [shouldShow, setShouldShow] = useState(false);
   useEffect(() => setShouldShow(true), []);
   return <Paper sx={{
-    height: "90vh",
+    height: '90vh',
   }}>
     <Box sx={{
-      backgroundColor: "rgba(0,0,0,0.4)",
-      height: "100%",
-      position: "absolute",
-      width: "100%",
+      backgroundColor: 'rgba(0,0,0,0.4)',
+      height: '100%',
+      position: 'absolute',
+      width: '100%',
       zIndex: 2
     }}></Box>
     <HeroImage sx={{
-      height: "100%",
-      position: "absolute",
-      width: "100%",
-      zIndex: 1
-    }} />
+      height: '100%',
+      position: 'absolute',
+      width: '100%',
+      zIndex: 1,
+    }}/>
     <Container maxWidth="md" sx={{
-      height: "100%",
+      height: '100%',
     }}>
       <Grid container alignItems="center" sx={{
-        height: "100%",
+        height: '100%',
         zIndex: 100,
-        position: "relative"
+        position: 'relative'
       }} justifyContent="space-between">
         <Zoom in={shouldShow}>
           <Grid item sm={8}>
