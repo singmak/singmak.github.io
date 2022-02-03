@@ -6,6 +6,7 @@ module.exports = {
     plugins: [
       "gatsby-plugin-image",
       "gatsby-plugin-sharp",
+      "gatsby-remark-images",
       "gatsby-theme-material-ui",
       {
         resolve: "gatsby-source-filesystem",
@@ -21,6 +22,18 @@ module.exports = {
           path: `${__dirname}/src/images`,
         }
       },
-      "gatsby-plugin-mdx",
+      {
+        resolve: `gatsby-plugin-mdx`,
+        options: {
+          gatsbyRemarkPlugins: [
+            {
+              resolve: `gatsby-remark-images`,
+              options: {
+                maxWidth: 1200,
+              },
+            },
+          ],
+        },
+      },
     ]
 };
