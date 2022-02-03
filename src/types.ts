@@ -3,6 +3,7 @@ export type MdxFrontmatter = {
   date: string,
   description: string,
   imageUrl?: string,
+  tags: string[],
 };
 
 export type MdxNode = {

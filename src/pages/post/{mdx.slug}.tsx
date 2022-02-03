@@ -4,21 +4,28 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import MainLayout from '../../components/MainLayout';
 import { PageProps } from 'gatsby';
 import { Mdx } from '../../types';
-import { Container, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 
 const BlogPost = ({ data }: PageProps<Mdx>) => {
   return (
-    <MainLayout pageTitle={'Blog'}>
+    <MainLayout pageTitle={data.mdx?.frontmatter?.title ?? 'Blog'}>
       <Container maxWidth="md" sx={{
         padding: 5
       }}>
         <Typography component="h1" sx={{
-          fontSize: "3rem"
+          fontSize: '3rem'
         }}>{data.mdx?.frontmatter?.title}</Typography>
         <Typography component="p">{data.mdx?.frontmatter?.date}</Typography>
-        <MDXRenderer>
-          {data.mdx?.body ?? ''}
-        </MDXRenderer>
+        <Box sx={{
+          'img': {
+            padding: 1,
+            background: '#fff'
+          }
+        }}>
+          <MDXRenderer>
+            {data.mdx?.body ?? ''}
+          </MDXRenderer>
+        </Box>
       </Container>
     </MainLayout>
   );
