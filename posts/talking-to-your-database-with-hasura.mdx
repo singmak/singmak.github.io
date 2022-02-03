@@ -1,0 +1,46 @@
+---
+title: "Intro: Talking to your database with Hasura"
+date: "2021-02-16"
+description: "So you need a backend to talk to your database and return the data to your web clients. Instead of building the API service yourself, there's a simpler and quicker solution: Hasura"
+tags: ['hasura','backend','database']
+---
+
+In the last few months, I got the opportunity to work with Hasura in a project at work. The project use Hasura as a Graphql API engine and the web application talks with
+the Hasura server to communicate with the database, the architecture looks like this:
+
+![Architecture](./images/hasura-simple-architecture.png)
+
+1. All the communication between the web clients and the database go through the Hasura service. The clients need to pass the query and the authorization token to Hasura.
+2. The Hasura service acts as a middle man between the clients and the database.
+3. Only the Hasura service is connected to the database
+4. Hasura talks with a Lambda function to authenticate the user and also some other Lambda functions for performing actions that cannot be done with the generated Graphql API.
+
+## What is Hasura and what does it do for you?
+
+In a few words, Hasura is a Graphql Engine that can generate a Grahql API based on your database's schema without writing a single line of code. It also provides some extra features such as database schema migrations, data access management, custom actions and data change events handling.
+
+### Graphql Engine
+
+### Database Migration
+
+### Hasura Console
+
+### Metadata files
+
+### Thorough and flexible management of data access
+
+### Data change events
+
+### Linking rest API with "Hasura Action"
+
+## Things to consider before deciding to use Hasura as your backend
+
+### Dependency on the database schema
+
+### Role management
+
+### Scaling
+
+## So, can Hasura replace your backend completely?
+
+## Alternative solutions
