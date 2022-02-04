@@ -37,14 +37,12 @@ I didn't find a case where I cannot query what I need with the generated Graphql
 ### Database Migration
 While you can just use an existing database with Hasura and manage the database schema migrations with other tools, you can also use Hasura to manage the database schema changes in migration files. For basic usage, you can just use the Hasura console UI to change the tables/columns schema and new migration files will be generated automatically. For database changes that you cannot do with the Hasura console UI, you can still write plain SQL statements and keep them in migration files. By using the Hasura database migration feature, you can revert your changes in the database and also apply the same schema changes in the databases of different environments.
 
-### Hasura console and the CLI tools
-To manage your Hasura service and your database, you need to learn how to use the Hasura console and the CLI. I find the console rather user friendly, even before I read any documentation, I know how to use most of the features already. You can launch the Hasura console locally on your computer and connect it to a remote Hasura engine. Any changes you make in the console are stored in the connected database and exported as metadata files as well.
+### Hasura console, CLI and meta data files
+To manage your Hasura service and your database, you need to learn how to use the Hasura console and the CLI. I find the console rather user friendly, even before I read any documentation, I know how to use most of the features already. You can launch the Hasura console locally on your computer and connect it to a remote Hasura Graphql engine. The Hasura console is the central place where you can learn about the generated Graphql API schema and a playground for testing the graphql queries. You can do any query there and even customize the query Headers, I always use it to test the role permission changes on the data.
 
-The Hasura console is the central place where you can learn about the generated Graphql API schema and a playground for testing the graphql queries. You can do any query there and even customize the query Headers, I always use it to test the role permission changes on the data.
+Any changes you make in the console are stored in the connected database and exported as metadata files as well. The metadata files can be used by apply the same Hasura configurations to different Hasura instance in different environments. Also, while the Hasura console is easy to use and good for configuring the Hasura server, it is not the most efficient way to configure Hasura, especially when you have a lot of tables that you want to configure at the same time. Sometimes, it's better to directly edit the meta data files to change the configuration of the different tables. You can even write a simple script to generate the metadata files. After all, the meta data files are just some JSON files. You can easily use any script language that can manipulate JSON to update or generate the Hasura meta data. In the project that I was working on, I have a small script that generate the permissions rules for all the tables in the database.
 
-### Metadata files
-
-### Sophisticated and flexible management of data access
+### Sophisticated and flexible permission management of data
 
 ### Data change events
 
