@@ -15,25 +15,45 @@ the Hasura server to communicate with the database, the architecture looks like 
 3. Only the Hasura service is connected to the database
 4. Hasura talks with a Lambda function to authenticate the user and also some other Lambda functions for performing actions that cannot be done with the generated Graphql API.
 
+Overall, I find it a really great tool so I want to how it was like in my experience in this small post.
+
 ## What is Hasura and what does it do for you?
 
-In a few words, Hasura is a Graphql Engine that can generate a Grahql API based on your database's schema without writing a single line of code. It also provides some extra features such as database schema migrations, data access management, custom actions and data change events handling.
+In a few words, Hasura is a Graphql Engine that can generate a Grahql API based on your database's schema without you writing a single line of code. It also provides some extra features such as database schema migrations, data access management, custom actions and data change events handling. Currently according to the [official doc](https://hasura.io/docs/latest/graphql/core/databases/index.html), these databases are supported by Hasura:
+* Postgres
+* MS SQL Server
+* Citus / Hyperscale
+* BigQuery
+* MySQL (in preview) - See the preview guide
 
-### Graphql Engine
+### The Graphql Engine
+
+The main feature of Hasura is that it can take your database and generate a production grade Graphql API. It's great for people like me, who have never built a Graphql API before. All I need to do is to launch a Hasura instance and connect it to a database 
+
+The generated Graphql schema closely resembles the SQL language and the database schema. By default, you can select and filter any columns in the tables and with a little configuration, you can also query data from the joined tables as well.
+
+I didn't find a case where I cannot query what I need with the generated Graphql schema. And if you happened to use Typescript in your project, you can use [GraphQL Code Generator](https://www.graphql-code-generator.com/) to generate the types from the Hasura GraphQL engine endpoint so that you don't need to code the types of Graphql query request/response models yourself. Performance wise, while I didn't really do any benchmark, I find it performs just as fast as I do with SQL query directly.
 
 ### Database Migration
+While you can just use an existing database with Hasura and manage the database schema migrations with other tools, you can also use Hasura to manage the database schema changes in migration files. For basic usage, you can just use the Hasura console UI to change the tables/columns schema and new migration files will be generated automatically. For database changes that you cannot do with the Hasura console UI, you can still write plain SQL statements and keep them in migration files. By using the Hasura database migration feature, you can revert your changes in the database and also apply the same schema changes in the databases of different environments.
 
-### Hasura Console
+### Hasura console and the CLI tools
+To manage your Hasura service and your database, you need to learn how to use the Hasura console and the CLI. I find the console rather user friendly, even before I read any documentation, I know how to use most of the features already. You can launch the Hasura console locally on your computer and connect it to a remote Hasura engine. Any changes you make in the console are stored in the connected database and exported as metadata files as well.
+
+The Hasura console is the central place where you can learn about the generated Graphql API schema and a playground for testing the graphql queries. You can do any query there and even customize the query Headers, I always use it to test the role permission changes on the data.
 
 ### Metadata files
 
-### Thorough and flexible management of data access
+### Sophisticated and flexible management of data access
 
 ### Data change events
 
 ### Linking rest API with "Hasura Action"
 
 ## Things to consider before deciding to use Hasura as your backend
+While you can already do a lot of things with the default configuration of Hasura, there are a lot of things to be considered before you decide how you are going to use Hasura or if you should use Hasura as your main way to communicate with the backend.
+
+### Input validation
 
 ### Dependency on the database schema
 
