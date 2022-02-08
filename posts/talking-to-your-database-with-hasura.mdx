@@ -42,23 +42,30 @@ To manage your Hasura service and your database, you need to learn how to use th
 
 Any changes you make in the console are stored in the connected database and exported as metadata files as well. The metadata files can be used by apply the same Hasura configurations to different Hasura instance in different environments. Also, while the Hasura console is easy to use and good for configuring the Hasura server, it is not the most efficient way to configure Hasura, especially when you have a lot of tables that you want to configure at the same time. Sometimes, it's better to directly edit the meta data files to change the configuration of the different tables. You can even write a simple script to generate the metadata files. After all, the meta data files are just some JSON files. You can easily use any script language that can manipulate JSON to update or generate the Hasura meta data. In the project that I was working on, I have a small script that generate the permissions rules for all the tables in the database.
 
-### Sophisticated and flexible permission management of data
+### Granular Permission management
+The requests to the Hasura server can be authorized by either putting an Admin secret or an Authorization token in the request headers. If a request contains an Admin secret in the request headers, the request will have full access to the data. If a request contains a JWT in the Authorization header, the request will have the permission based on the user and role information contained in the token.
+
+Admin secret is mainly for adminstrating the Hasura server can must not be shared with the client applications. Client application can pass an Authorization token in the request headers and Hasura can validate and decode the token to get the role and user metadata. Every request can be assigned a single Hasura role in the token and different roles have different access to the data. For example, you can define a "creator" role that can insert, update or select the rows in a table and a "viewer" row that is only allowed to get the data. You an even limit the roles to only be able to access some of the columns.
+
+One very useful feature that I use, you can define permnission rules so that the access of the rows can be based on the value stored in the columns and the user meta data. For example, there can be a "user_id" column in the table and we can define a permission rule in a role so that a user with the role can only access the rows which contain the same "user_id" value with the user's id.
+
+So how Hasura validate the user and decode the user's token to get the role and user's meta data? It can be done in 2 ways: JWT and webhook. The project that I worked on uses webhook to authorize the user. First of all, you need to set the webhook endpoint in the Hasura instance, after that, for every Graphql request, Hasura will send the authorization token to the webhook API, the webhook API can validate and decode the token to know if the user is authorized to access the data and which Hasura role should be assigned to the user. The status response of the authorization webhook request must be 200 and the response body should contains "X-Hasura-Role" to assign the request to a role and other user meta data for filtering the data. As an example:
+```
+{
+    "X-Hasura-User-Id": "25",
+    "X-Hasura-Role": "user",
+    "X-Hasura-Is-Owner": "true",
+    "X-Hasura-Custom": "custom value"
+}
+```
 
 ### Data change events
-
+You can easily configure to trigger a webhook API to be executed when there's a data change event happen on any tables. The subscription is done on the database level, so even if you directly change the data in the database table (without going through the Hasura graphql API), the event will still be triggered to call the webhook API. We need to aware that the change events are not triggered in order.
 ### Linking rest API with "Hasura Action"
-
-## Things to consider before deciding to use Hasura as your backend
-While you can already do a lot of things with the default configuration of Hasura, there are a lot of things to be considered before you decide how you are going to use Hasura or if you should use Hasura as your main way to communicate with the backend.
-
-### Input validation
+Hasura Actions is a way for us to extend the auto generate Graphql API. For example, if you want to do a customized input validation in inserting data into database, you can create a webhook API to do the data validation and then do the insert. Be default, the input validation is only based on the DB schema.
 
 ### Dependency on the database schema
-
-### Role management
-
-### Scaling
-
+The graphql API highly depends on the database schema, which may not be very good from the security point of view since people can know the column and tables names in the DB simply by checking the payload of the Graphql request.
 ## So, can Hasura replace your backend completely?
-
-## Alternative solutions
+I think Hasura is great as a replacement of the usual CRUD Rest API that we build to talk with the database. Frontend can freely query the data it needs with the Graphql API and we can configure the role permissions in accessing the data.
+As mentioned, while Hasura can generate the graphql API for us, it's still our job to immplement the authentication and authorization probably. The freedom of querying the data also means that we need to be careful about not making a query that performs poorly and overload the server. The (official doc)[https://hasura.io/learn/graphql/hasura-advanced/security/6-timeouts/] also suggests that we should set a timeout in the database so that the database can be protected from the attack of overloading the server by requests that take a long time to load.
