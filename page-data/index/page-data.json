@@ -1,5 +1,5 @@
 {
-    "componentChunkName": "component---src-pages-index-js",
+    "componentChunkName": "component---src-pages-index-tsx",
     "path": "/",
-    "result": {"pageContext":{}},
-    "staticQueryHashes": []}
+    "result": {"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"February 13, 2021","title":"Intro: Talking to your database with Hasura","description":"So you need a backend to talk to your database and return the data to your web clients. Instead of building the API service yourself, there's a simpler and quicker solution: Hasura","tags":["hasura","backend","database","example"]},"id":"7593ef8f-c937-5273-a8d3-64e42fa08858","slug":"talking-to-your-database-with-hasura"}]}},"pageContext":{}},
+    "staticQueryHashes": ["3159585216"]}
