@@ -27,12 +27,16 @@ In a few words, Hasura is a Graphql Engine that can generate a Grahql API based 
 * MySQL (in preview) - See the preview guide
 
 ### The Graphql Engine
-
 The main feature of Hasura is that it can take your database and generate a production grade Graphql API. It's great for people like me, who have never built a Graphql API before. All I need to do is to launch a Hasura instance and connect it to a database 
 
-The generated Graphql schema closely resembles the SQL language and the database schema. By default, you can select and filter any columns in the tables and with a little configuration, you can also query data from the joined tables as well.
+You can do so much with the generated API: You can select any columns in a table; you can combine multiple conditions with "OR" and "AND"; you can do insert and update data; you can do sorting, pagination and join tables, data agregation, etc. The generated Graphql schema closely resembles the SQL language and the database schema so people who has are familiar with SQL, can learn how to use the generated API very easily.
 
-I didn't find a case where I cannot query what I need with the generated Graphql schema. And if you happened to use Typescript in your project, you can use [GraphQL Code Generator](https://www.graphql-code-generator.com/) to generate the types from the Hasura GraphQL engine endpoint so that you don't need to code the types of Graphql query request/response models yourself. Performance wise, while I didn't really do any benchmark, I find it performs just as fast as I do with SQL query directly.
+I didn't find a case where I cannot query what I need with the generated Graphql schema. And if you happened to use Typescript in your project, you can use [GraphQL Code Generator](https://www.graphql-code-generator.com/) to generate the types from the Hasura GraphQL engine endpoint so that you don't need to code the types of Graphql query request/response models yourself.
+
+### Extending the graphql API with "Hasura Action"
+While the generated Graphql API is very good for query data, you may not want the user to directly use the generated Graphql to insert data into your database because it provides too much freedom in how the data can be input. You may want to add some extra logic to validate or transform the user inputs before they are inserted into the database. In these cases, you can create new Hasura Actions and configure them to pass the requests to APIs that we implement on our own while blocking the users to access generated insert API.
+### Performance
+During my usages, I didn't face any performance issues with Hasura, I found that the performance of the query highly depends on how the query is written. The Graphql API provides so much freedom to the frontends so they can query just exactly what they need and keey the response size small. On the other hand, a query that involes many tables joins with a large amount of data can be very slow and even cause request timeout in some cases.
 
 ### Database Migration
 While you can just use an existing database with Hasura and manage the database schema migrations with other tools, you can also use Hasura to manage the database schema changes in migration files. For basic usage, you can just use the Hasura console UI to change the tables/columns schema and new migration files will be generated automatically. For database changes that you cannot do with the Hasura console UI, you can still write plain SQL statements and keep them in migration files. By using the Hasura database migration feature, you can revert your changes in the database and also apply the same schema changes in the databases of different environments.
@@ -42,7 +46,7 @@ To manage your Hasura service and your database, you need to learn how to use th
 
 Any changes you make in the console are stored in the connected database and exported as metadata files as well. The metadata files can be used by apply the same Hasura configurations to different Hasura instance in different environments. Also, while the Hasura console is easy to use and good for configuring the Hasura server, it is not the most efficient way to configure Hasura, especially when you have a lot of tables that you want to configure at the same time. Sometimes, it's better to directly edit the meta data files to change the configuration of the different tables. You can even write a simple script to generate the metadata files. After all, the meta data files are just some JSON files. You can easily use any script language that can manipulate JSON to update or generate the Hasura meta data. In the project that I was working on, I have a small script that generate the permissions rules for all the tables in the database.
 
-### Granular Permission management
+### Granular permission management
 The requests to the Hasura server can be authorized by either putting an Admin secret or an Authorization token in the request headers. If a request contains an Admin secret in the request headers, the request will have full access to the data. If a request contains a JWT in the Authorization header, the request will have the permission based on the user and role information contained in the token.
 
 Admin secret is mainly for adminstrating the Hasura server can must not be shared with the client applications. Client application can pass an Authorization token in the request headers and Hasura can validate and decode the token to get the role and user metadata. Every request can be assigned a single Hasura role in the token and different roles have different access to the data. For example, you can define a "creator" role that can insert, update or select the rows in a table and a "viewer" row that is only allowed to get the data. You an even limit the roles to only be able to access some of the columns.
@@ -61,11 +65,8 @@ So how Hasura validate the user and decode the user's token to get the role and 
 
 ### Data change events
 You can easily configure to trigger a webhook API to be executed when there's a data change event happen on any tables. The subscription is done on the database level, so even if you directly change the data in the database table (without going through the Hasura graphql API), the event will still be triggered to call the webhook API. We need to aware that the change events are not triggered in order.
-### Linking rest API with "Hasura Action"
-Hasura Actions is a way for us to extend the auto generate Graphql API. For example, if you want to do a customized input validation in inserting data into database, you can create a webhook API to do the data validation and then do the insert. Be default, the input validation is only based on the DB schema.
-
 ### Dependency on the database schema
 The graphql API highly depends on the database schema, which may not be very good from the security point of view since people can know the column and tables names in the DB simply by checking the payload of the Graphql request.
-## So, can Hasura replace your backend completely?
-I think Hasura is great as a replacement of the usual CRUD Rest API that we build to talk with the database. Frontend can freely query the data it needs with the Graphql API and we can configure the role permissions in accessing the data.
-As mentioned, while Hasura can generate the graphql API for us, it's still our job to immplement the authentication and authorization probably. The freedom of querying the data also means that we need to be careful about not making a query that performs poorly and overload the server. The (official doc)[https://hasura.io/learn/graphql/hasura-advanced/security/6-timeouts/] also suggests that we should set a timeout in the database so that the database can be protected from the attack of overloading the server by requests that take a long time to load.
+
+## Verdict
+While I don't have much experience on implementing Graphql API on the backend, I can imagine it must be a lot of hard work to implement and maintain a Graphql API to query our own database, and Hasura does this hard work for us. We can enjoy the benefit of Graphql without spending the time and effort to implement a Graphql API on our own. It also provides a lot of other features so that we can manage the data access for the users and extends the Graphql API with Hasura Actions. The generated Hasura API, together with a little work on the authorization and maybe a few extra Hasura actions, is probably good enough for most project already. The time and effort that it can save for us, and the flexibilities that it provides make it a very good option for a lot of projects to use a way to talk with the databases.
