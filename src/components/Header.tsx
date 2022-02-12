@@ -16,9 +16,9 @@ import { Typography } from '@mui/material';
 
 const navigationLinks = [
   { name: 'Blog', href: '/' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  // { name: 'Projects', href: '/projects' },
+  // { name: 'About', href: '/about' },
+  // { name: 'Contact', href: '/contact' },
 ];
 
 const linkStyle = {
