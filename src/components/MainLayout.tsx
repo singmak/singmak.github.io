@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import * as React from 'react';
+import { Footer } from './Footer';
 import Header from './Header';
 
 const MainLayout: React.FC<{ pageTitle: string }> = ({ pageTitle, children }) => {
@@ -11,6 +12,7 @@ const MainLayout: React.FC<{ pageTitle: string }> = ({ pageTitle, children }) =>
       <Header pageTitle={pageTitle} />
       <CssBaseline />
       {children}
+      <Footer />
     </Box>
   );
 };
