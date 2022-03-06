@@ -28,8 +28,8 @@ After the new version of the API service is deployed, we can run the migration s
 After the data migration script finishes migrating the data, we can safely deploy the latest version of the web application, that is updated for the new business flow, and makes requests to the new API.
 
 In summary, to achieve no downtime for data migration, I think the deployment order should be like this:
-1. Apply data schema changes to production database (make sure it's backend compatible with current API service)
-2. Deploy API service (make sure it's backend compatible with current web application and also automatically handle data migration for new data)
+1. Apply data schema changes to production database (make sure it's backward compatible with current API service)
+2. Deploy API service (make sure it's backward compatible with current web application and also automatically handle data migration for new data)
 3. Run data migration script to migrate existing data
 4. Deploy the web application
 
