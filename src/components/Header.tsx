@@ -52,7 +52,7 @@ export default function Header({ pageTitle }: {
   console.log('siteData', siteData, siteData?.site?.siteMetadata?.title);
   const siteTitle = useMemo(() => siteData?.site?.siteMetadata?.title, [siteData]);
   return (<AppBar position='sticky' color='primary' elevation={5}>
-    <Container maxWidth="md">
+    <Container>
       <Toolbar disableGutters>
         <Link
           href="/"
