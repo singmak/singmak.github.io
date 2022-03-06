@@ -5,7 +5,9 @@ import Header from './Header';
 
 const MainLayout: React.FC<{ pageTitle: string }> = ({ pageTitle, children }) => {
   return (
-    <Box>
+    <Box sx={{
+      backgroundColor: '#e6f1f3'
+    }}>
       <Header pageTitle={pageTitle} />
       <CssBaseline />
       {children}
