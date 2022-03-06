@@ -2,7 +2,19 @@ import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
+    primary: {
+      main: '#456679',
+    },
+    secondary: {
+      main: '#648a5f',
+    },
+  },
+  typography: {
+    fontFamily: [
+      'Merriweather',
+      'sans-serif'
+    ].join(','),
   },
 });
 

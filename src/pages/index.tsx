@@ -10,8 +10,9 @@ const BlogListItem = ({ mdx }: { mdx: MdxNode }) => {
   if (!meta) return null;
   return (
     <Grid item>
-      <Card sx={{
-        display: 'flex'
+      <Card elevation={0} sx={{
+        display: 'flex',
+        backgroundColor: '#fff',
       }}>
         <Box>
           <CardContent>
