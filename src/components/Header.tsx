@@ -13,6 +13,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import List from '@mui/material/List';
 import { Typography } from '@mui/material';
+import { StaticImage } from 'gatsby-plugin-image';
 
 const navigationLinks = [
   { name: 'Blog', href: '/' },
@@ -23,6 +24,14 @@ const navigationLinks = [
 
 const linkStyle = {
   marginLeft: '20px',
+  color: '#fff',
+  fontFamily: 'roboto',
+  padding: '5px 7px',
+  backgroundColor: '#51748a',
+  textAlign: 'center',
+  '&:hover': {
+    backgroundColor: '#6a889c',
+  },
 };
 
 export default function Header({ pageTitle }: {
@@ -42,7 +51,7 @@ export default function Header({ pageTitle }: {
   const onClose = useCallback(() => setOpen(false), [setOpen]);
   console.log('siteData', siteData, siteData?.site?.siteMetadata?.title);
   const siteTitle = useMemo(() => siteData?.site?.siteMetadata?.title, [siteData]);
-  return (<AppBar position='sticky' color='default'>
+  return (<AppBar position='sticky' color='primary' elevation={5}>
     <Container maxWidth="md">
       <Toolbar disableGutters>
         <Link
@@ -51,9 +60,9 @@ export default function Header({ pageTitle }: {
           variant="button"
           underline="none"
         >
-          <Typography component='h1'>{siteTitle}</Typography>
+          <StaticImage src="../images/singmak_logo.png" alt="SING MAK" placeholder="none"/>
         </Link>
-        <Typography component='h1' sx={{ marginX: 'auto'}}>{pageTitle}</Typography>
+        <Typography component='h1' sx={{ marginX: 'auto', color: '#ede4e9', fontWeight: 600 }}>{pageTitle}</Typography>
         <Box sx={{
           display: {
             xs: 'none',
