@@ -13,7 +13,7 @@ Therefore, the new version of the database schema should be deployed first and i
 
 ## Data migration
 
-Data migration may be required for different reasons such as infrastructure changes or business logic changes. To achieve no downtime during data migration, we need to handle it at the API codes level. 
+Data migration may be required for different reasons such as infrastructure changes or business logic changes. It can be tricky to achieve no downtime in doing data migration since new data can still be created during the data migration. Therefore, during data migration, we need to handle it at the API codes level so that the new data are also automatically migrated. 
 
 For example, assume that there is an existing API service, which contains APIs that perform CRUD in a database table A. There is also a web application that makes requests to the API service.
 
@@ -26,6 +26,12 @@ First of all, even if we have deployed a new version of the web application, we 
 After the new version of the API service is deployed, we can run the migration script to migrate the data from Table A to Table B with the new data structure. During this time, the web application is still not updated and it is still making requests to the old API. But since the old API has been updated to also transform and write data to Table B, we don't need to worry about missing some data in the new Table B.
 
 After the data migration script finishes migrating the data, we can safely deploy the latest version of the web application, that is updated for the new business flow, and makes requests to the new API.
+
+In summary, to achieve no downtime for data migration, I think the deployment order should be like this:
+1. Apply data schema changes to production database (make sure it's backend compatible with current API service)
+2. Deploy API service (make sure it's backend compatible with current web application and also automatically handle data migration for new data)
+3. Run data migration script to migrate existing data
+4. Deploy the web application
 
 After running with the new updated version of the API service for some time and when all users are using the new version of the web application, the old APIs and the old Table A will eventually become obsolete and we can remove them in the next release of the API service.
 
