@@ -18,9 +18,6 @@ const About = () => {
               I am Sing Mak, a software engineer with 12 years' experience, 5 years of Android development experience and almost 4 years' full stack web development experience. Currently my main focus is on backend development with Typescript, Node.js and AWS services. I am also quite interesting in scripting and devops stuff.
             </Typography>
             <Typography variant='body1'>
-              In my free time, I like hiking, drawing and watching anime. I also taught myself some Korean since I am a Kpop fan :)
-            </Typography>
-            <Typography variant='body1'>
               You can contact me by: <a href="mailto:mssjsg@gmail.com">mssjsg@gmail.com</a> or <a href="www.linkedin.com/in/sing-mak-dev">LinkedIn</a>
             </Typography>
           </Box>
