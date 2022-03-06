@@ -5,6 +5,11 @@ description: "How can we make changes to the database schema and migrate data wi
 tags: ['database', 'deployment']
 ---
 
+Recently, our team is discussing if it's possible to deploy changes to production without downtime. Some of the difficult tasks to do when the server is up and running are:
+* Applying database schema changes
+* Data migration
+
+While it may sound risky to make changes to database schema or do data migration when the clients are still making requests and producing new data transactions it's not impossible to handle these tasks without bringing down the service. In this post, I am going to discuss how we can achieve no downtime in our service even when we need to apply new data schema changes and perform data migration.
 ## Schema changes
 
 To achieve no downtime, we should deploy database schema changes before deploying the new version of the API service. The reason is that if we deploy the new version of the API service first, the APIs that require the new database schema changes will be broken since the new database schema changes are not there yet.
