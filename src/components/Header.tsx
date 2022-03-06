@@ -18,7 +18,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 const navigationLinks = [
   { name: 'Blog', href: '/' },
   // { name: 'Projects', href: '/projects' },
-  // { name: 'About', href: '/about' },
+  { name: 'About', href: '/about' },
   // { name: 'Contact', href: '/contact' },
 ];
 
@@ -29,7 +29,7 @@ const linkStyle = {
   padding: '5px 7px',
   backgroundColor: '#51748a',
   textAlign: 'center',
-  '&:hover': {
+  ':hover': {
     backgroundColor: '#6a889c',
   },
 };
@@ -50,7 +50,7 @@ export default function Header({ pageTitle }: {
   const onOpen = useCallback(() => setOpen(true), [setOpen]);
   const onClose = useCallback(() => setOpen(false), [setOpen]);
   console.log('siteData', siteData, siteData?.site?.siteMetadata?.title);
-  const siteTitle = useMemo(() => siteData?.site?.siteMetadata?.title, [siteData]);
+  // const siteTitle = useMemo(() => siteData?.site?.siteMetadata?.title, [siteData]);
   return (<AppBar position='sticky' color='primary' elevation={5}>
     <Container>
       <Toolbar disableGutters>
