@@ -27,14 +27,17 @@
     "gatsby": "^4.5.4",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-image": "^2.5.2",
+    "gatsby-plugin-react-helmet": "^5.9.0",
     "gatsby-plugin-sharp": "^4.5.2",
     "gatsby-remark-images": "^6.6.0",
     "gatsby-source-filesystem": "^4.5.2",
     "gatsby-theme-material-ui": "^5.1.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0"
   },
   "devDependencies": {
+    "@types/react-helmet": "^6.1.5",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
     "eslint": "^8.8.0",

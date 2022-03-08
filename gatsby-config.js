@@ -8,6 +8,7 @@ module.exports = {
       "gatsby-plugin-sharp",
       "gatsby-remark-images",
       "gatsby-theme-material-ui",
+      "gatsby-plugin-react-helmet",
       {
         resolve: "gatsby-source-filesystem",
         options: {
