@@ -14,11 +14,11 @@ const About = () => {
       <Container maxWidth='md'>
         <Box sx={container}>
           <Box>
-            <Typography variant='body1'>
-              I am Sing Mak, a software engineer with 12 years' experience, 5 years of Android development experience and almost 4 years' full stack web development experience. Currently my main focus is on backend development with Typescript, Node.js and AWS services. I am also quite interesting in scripting and devops stuff.
+            <Typography paragraph>
+              I am Sing Mak, a software engineer with 12 years' experience, 5 years of Android development experience and almost 4 years' full stack web development experience. Currently my main focus is on backend development with Typescript, Node.js and AWS services. I am also quite interesting in scripting and DevOps.
             </Typography>
-            <Typography variant='body1'>
-              You can contact me by: <a href="mailto:mssjsg@gmail.com">mssjsg@gmail.com</a> or <a href="www.linkedin.com/in/sing-mak-dev">LinkedIn</a>
+            <Typography paragraph>
+              You can contact me by: <a target="_blank" href="mailto:mssjsg@gmail.com" rel="noreferrer">mssjsg@gmail.com</a> or <a target="_blank" href="https://www.linkedin.com/in/sing-mak-dev" rel="noreferrer">LinkedIn</a>
             </Typography>
           </Box>
         </Box>
