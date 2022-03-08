@@ -4,3 +4,5 @@ google analytics
 about page
 projects page
 home page
+style code blocks
+tags cloud
