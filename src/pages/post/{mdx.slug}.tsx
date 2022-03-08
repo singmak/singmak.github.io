@@ -13,7 +13,10 @@ const BlogPost = ({ data }: PageProps<Mdx>) => {
         padding: 5
       }}>
         <Typography component="h1" sx={{
-          fontSize: '3rem'
+          fontSize: {
+            xs: '1.5rem',
+            md: '2.5rem',
+          }
         }}>{data.mdx?.frontmatter?.title}</Typography>
         <Typography component="p">{data.mdx?.frontmatter?.date}</Typography>
         <Box sx={{
