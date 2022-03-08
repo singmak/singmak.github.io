@@ -10,7 +10,7 @@ const container = {
 
 const About = () => {
   return (
-    <MainLayout pageTitle="Blog Posts">
+    <MainLayout pageTitle="About">
       <Container maxWidth='md'>
         <Box sx={container}>
           <Box>
