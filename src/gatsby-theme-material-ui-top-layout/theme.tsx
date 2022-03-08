@@ -9,9 +9,6 @@ const theme = createTheme({
     secondary: {
       main: '#648a5f',
     },
-    action: {
-      
-    }
   },
   typography: {
     fontFamily: [

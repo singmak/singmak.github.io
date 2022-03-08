@@ -30,6 +30,7 @@ const linkStyle = {
   backgroundColor: '#51748a',
   textAlign: 'center',
   ':hover': {
+    color: '#fff',
     backgroundColor: '#6a889c',
   },
 };
@@ -59,10 +60,27 @@ export default function Header({ pageTitle }: {
           color="textPrimary"
           variant="button"
           underline="none"
+          sx={{
+            marginRight: 1,
+          }}
         >
           <StaticImage src="../images/singmak_logo.png" alt="SING MAK" placeholder="none"/>
         </Link>
-        <Typography component='h1' sx={{ marginX: 'auto', color: '#ede4e9', fontWeight: 600 }}>{pageTitle}</Typography>
+        <Box sx={{
+          marginX: 'auto',
+        }}>
+          <Typography component='h1' sx={{
+            color: '#fff',
+            fontWeight: 600,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: {
+              xs: 'none',
+              md: 'block',
+            },
+          }}>{pageTitle}</Typography>
+        </Box>
         <Box sx={{
           display: {
             xs: 'none',
@@ -85,8 +103,9 @@ export default function Header({ pageTitle }: {
         <IconButton sx={{
           display: {
             sx: 'block',
-            sm: 'none'
-          }
+            sm: 'none',
+          },
+          color: '#fff',
         }} onClick={onOpen}>
           <MenuIcon />
         </IconButton>
@@ -95,7 +114,7 @@ export default function Header({ pageTitle }: {
     <SwipeableDrawer anchor="right" open={open} onOpen={onOpen} onClose={onClose}>
       <Box>
         <IconButton>
-          <ChevronRightIcon onClick={onClose} />
+          <ChevronRightIcon onClick={onClose}/>
         </IconButton>
       </Box>
       <Divider />
