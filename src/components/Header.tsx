@@ -113,8 +113,8 @@ export default function Header({ pageTitle }: {
     </Container>
     <SwipeableDrawer anchor="right" open={open} onOpen={onOpen} onClose={onClose}>
       <Box>
-        <IconButton>
-          <ChevronRightIcon onClick={onClose}/>
+        <IconButton onClick={onClose}>
+          <ChevronRightIcon/>
         </IconButton>
       </Box>
       <Divider />
