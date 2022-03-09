@@ -7,15 +7,15 @@ import Link from '@mui/material/Link';
 const socialItems = [
   {
     icon: GitHub,
-    url: '',
+    url: 'https://github.com/singmak',
   },
   {
     icon: LinkedIn,
-    url: '',
+    url: 'https://www.linkedin.com/in/sing-mak-dev',
   }
 ];
 
-export default function Social({ direction }: { direction: 'column'|'row' }) {
+export function Social({ direction }: { direction: 'column'|'row' }) {
   return <Grid container direction={direction || 'row'} spacing={1}>
     {socialItems.map((item) => <Grid item key={item.url}>
       <Link href={item.url}><IconButton><item.icon /></IconButton></Link>
