@@ -6,3 +6,4 @@ projects page
 home page
 style code blocks
 tags cloud
+contact page / contact form
