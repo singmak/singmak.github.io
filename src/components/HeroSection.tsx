@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Zoom from '@mui/material/Zoom';
-import Social from './Social';
+import { Social } from './Social';
 import { styled } from '@mui/system';
 import { StaticImage } from 'gatsby-plugin-image';
 

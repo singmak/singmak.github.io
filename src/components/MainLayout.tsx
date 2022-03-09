@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 
 import { Footer } from './Footer';
 import Header from './Header';
+import { Social } from './Social';
 import '../styles.css';
 
 const MainLayout: React.FC<{ pageTitle: string }> = ({ pageTitle, children }) => {
@@ -17,6 +18,9 @@ const MainLayout: React.FC<{ pageTitle: string }> = ({ pageTitle, children }) =>
         <title>Sing Mak&apos;s software engineering journey | {pageTitle}</title>
       </Helmet>
       <Header pageTitle={pageTitle} />
+      <Box sx={{ position: 'fixed', right: 5, top: 200, display: { xs: 'none', sm: 'block' } }}>
+        <Social direction='column'/>
+      </Box>
       <CssBaseline />
       {children}
       <Footer />
