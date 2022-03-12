@@ -1,7 +1,7 @@
 ---
-title: "The road to Zero Downtime: Blue Green deployment and Microservices"
+title: "The road to Zero Downtime: Blue-Green Deployment and Microservices"
 date: "2022-03-05"
-description: "How can we deploy changes or rollback changes of services in production without causing downtime?"
+description: "With Blue-Green Deployment, we can deploy changes or rollback changes of services in production without causing downtime."
 tags: ['devops', 'deployment']
 ---
 
@@ -65,4 +65,4 @@ When we change the route from a Green environment to a Blue environment, the use
 The browser may cache the old version of the web application for too long. We can implement a mechanism so that the user's browser always loads the latest version of the web application.
 
 ### Mobile application
-A new version of a mobile application can take days to roll out to the users. Therefore, whenever we deploy a new version of a backend service, we need to make sure that APIs are still compatible with different versions of the mobile applications.
+A new version of a mobile application can take days to roll out to the users. Therefore, whenever we deploy a new version of a backend service, we need to make sure that APIs are still compatible with different versions of the mobile applications. On the other hand, we should also be careful about rolling back backend changes since it can break the newer version of the mobile app.
