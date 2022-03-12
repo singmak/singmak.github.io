@@ -1,0 +1,68 @@
+---
+title: "The road to Zero Downtime: Blue Green deployment and Microservices"
+date: "2022-03-05"
+description: "How can we deploy changes or rollback changes of services in production without causing downtime?"
+tags: ['devops', 'deployment']
+---
+
+In this post, I am going to share what I have learned so far about Blue-Green deployment and discuss the different approaches and possible challenges of doing Blue-Green Deployment. There could be things that I am not aware of since I haven't put them into practice yet. So I may write another post to share my experience when I have the opportunity to apply this interesting technique at work :).
+
+# What is Blue-Green Deployment?
+
+Blue-Green Deployment is one of the techniques to help us to deploy changes of applications to production without causing downtime in the services. The idea is that during the deployment of the new version of the service, we won't shut down the base service, and so there are periods that there are 2 versions of the services are running concurrently. The base version of the service will continue to receive the traffic during the deploying of the new version of the service, and once the deployment is done and tested ok, we can route all the traffic to the new version of the service and cut off the traffic from the original version of the service.
+
+There can be different approaches in Blue-Green Deployment in a system with microservices architecture.
+
+# Different approaches
+
+## Approach 1: Maintain 2 Production environments and always release new versions of all the services at the same time
+
+In this approach, we need to set up and maintain 2 production environments. One of them is active (Blue) and receives all of the traffic while the other one (Green) is used for deployment of the new versions of the services. We can take time to do the deployment and run testing on the inactive environment. Once we decide that the Green environment is ready, we change the route so that all the traffic goes to the Green environment instead. We can monitor the changes for several days and observe if the changes are causing any problems during real usage by the users. If there are critical issues in the new changes, we can easily switch back to the previous version by changing the route back to the Blue environment. This gives us buffer time to fix the problems without causing more downtime.
+
+### Advantages
+
+* Less effort on maintaining compatibilities between the services since the old version of the services and the new version of the services don't interact with each other.
+* No new technology is introduced to the stack, we can just set up and deploy the 2 production environments in the same way.
+* Since we do the release of all the services together, the overhead of doing releases such as documentation, testing, monitoring, etc can be reduced.
+
+### disadvantages
+* Extra cost of keeping 2 live productions environments. We can decide to stop the instances in the inactive production environment when we are not doing any deployments.
+* Extra work to set up and maintain 2 production environments.
+* The services must be released at the same time and rolled back at the same time.
+
+## Approach 2: Maintain only one production system and release each service independently
+
+With this approach, the unit of the deployment is one service (or a stack of multiple services) instead of the whole system. The route switchover would need to be done at the service level instead of the whole system level. During deployment of the service, new instances are provisioned for the new version of the service. When the new version services are fully ready, we can do the switchover of the production traffic to the new instances. We can decide to keep the original instances (old version) of the services for some time for the ease of rolling back the changes. When we are sure that the new version of the service is working probably, the old instances can be safely terminated.
+
+### Advantages
+
+* Services can be released independently
+* Less cost on hosting the services.
+    * Only need to provision new instances for the services that are being released
+    * Old instances can be discarded when the deployment is done.
+
+### Disadvantages
+
+* More time and effort on doing releases, testing, and rolling back changes. Instead of these tasks altogether, we need to do those tasks for each service.
+* More effort on maintaining backward compatibility, we need to make sure that the new changes in the service won't break the other services.
+* Rolling back changes is more difficult. If we roll back the changes of one service, we may also break some other services that depend on the new APIs.
+
+## Which approach should we use?
+
+Approach 1 is the easier approach, requires less effort on doing the release, and allows us to roll back changes instantaneously. The main disadvantages are the extra effort and cost to maintain 2 production environments. This can be a good approach for systems that are always released by one team only at any given time.
+
+Approach 2 can be a good approach for a large system where there is a need to handle the releases of the services independently and concurrently by multiple teams so it's not possible to do the switchover from one production environment to a completely different production environment for the whole system. The disadvantages are more effort on maintaining the backward compatibilities of the services and the overhead of doing releases of individual services.
+
+# Challenges
+
+### Synchronization of data between the 2 production environments
+If each production environment has its database, we need to have a mechanism to synchronize the data in the 2 databases, which can be very complex to implement. Sharing the database between the Blue and Green environments could be the easier approach but we need to make sure that the database schema is compatible with both Blue and Green environments.
+
+### Handling the transactions that happen during the switchover
+When we change the route from a Green environment to a Blue environment, the users may be in the middle of doing something. Because of session or API changes, the system may not be able to handle the requests probably, backend services should return errors probably in these situations and the frontend applications should handle the errors gracefully such as showing a message to the user and force reload of the application.
+
+### Web application
+The browser may cache the old version of the web application for too long. We can implement a mechanism so that the user's browser always loads the latest version of the web application.
+
+### Mobile application
+A new version of a mobile application can take days to roll out to the users. Therefore, whenever we deploy a new version of a backend service, we need to make sure that APIs are still compatible with different versions of the mobile applications.
