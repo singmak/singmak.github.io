@@ -1,6 +1,6 @@
 ---
 title: "The road to Zero Downtime: Blue-Green Deployment and Microservices"
-date: "2022-03-05"
+date: "2022-03-12"
 description: "With Blue-Green Deployment, we can deploy changes or rollback changes of services in production without causing downtime."
 tags: ['devops', 'deployment']
 ---
@@ -25,7 +25,7 @@ In this approach, we need to set up and maintain 2 production environments. One 
 * No new technology is introduced to the stack, we can just set up and deploy the 2 production environments in the same way.
 * Since we do the release of all the services together, the overhead of doing releases such as documentation, testing, monitoring, etc can be reduced.
 
-### disadvantages
+### Disadvantages
 * Extra cost of keeping 2 live productions environments. We can decide to stop the instances in the inactive production environment when we are not doing any deployments.
 * Extra work to set up and maintain 2 production environments.
 * The services must be released at the same time and rolled back at the same time.
