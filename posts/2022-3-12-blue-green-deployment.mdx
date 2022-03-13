@@ -36,7 +36,7 @@ With this approach, the unit of the deployment is one service (or a stack of mul
 
 ### Advantages
 
-* Services can be released independently
+* Services can be released/rolled back independently and concurrently by different teams
 * Less cost on hosting the services.
     * Only need to provision new instances for the services that are being released
     * Old instances can be discarded when the deployment is done.
@@ -46,6 +46,7 @@ With this approach, the unit of the deployment is one service (or a stack of mul
 * More time and effort on doing releases, testing, and rolling back changes. Instead of these tasks altogether, we need to do those tasks for each service.
 * More effort on maintaining backward compatibility, we need to make sure that the new changes in the service won't break the other services.
 * Rolling back changes is more difficult. If we roll back the changes of one service, we may also break some other services that depend on the new APIs.
+* More effort on setting up Blue-Green Deployment on every service
 
 ## Which approach should we use?
 
@@ -59,10 +60,15 @@ Approach 2 can be a good approach for a large system where there is a need to ha
 If each production environment has its database, we need to have a mechanism to synchronize the data in the 2 databases, which can be very complex to implement. Sharing the database between the Blue and Green environments could be the easier approach but we need to make sure that the database schema is compatible with both Blue and Green environments.
 
 ### Handling the transactions that happen during the switchover
-When we change the route from a Green environment to a Blue environment, the users may be in the middle of doing something. Because of session or API changes, the system may not be able to handle the requests probably, backend services should return errors probably in these situations and the frontend applications should handle the errors gracefully such as showing a message to the user and force reload of the application.
+When we change the route from a Green environment to a Blue environment, the users may be in the middle of doing something. Users may lose their sessions in the previous services instances, the system may not be able to handle the requests probably. Backend services should return errors probably in these situations and the frontend applications should handle the errors gracefully such as showing a message to the user and force reload of the application. If the user is in the middle of working on something, the user may lose his/her work because of the systems changes, we can resolve this by saving the users' changes on the client or database from time to time automatically. Also, we can implement backward compatibility in the API so that even if the users are doing work on the old version of the applications, they can still complete their work without problems.
 
 ### Web application
 The browser may cache the old version of the web application for too long. We can implement a mechanism so that the user's browser always loads the latest version of the web application.
 
 ### Mobile application
 A new version of a mobile application can take days to roll out to the users. Therefore, whenever we deploy a new version of a backend service, we need to make sure that APIs are still compatible with different versions of the mobile applications. On the other hand, we should also be careful about rolling back backend changes since it can break the newer version of the mobile app.
+
+### Data migration
+It may not be a trivial task to do data migration without putting the system on maintenance mode since the users (or other systems) can still trigger to create new data or make changes to the data during data migration.
+I discussed possible solutions in [my previous post](/2022-3-5-database-migration-with-no-downtime.mdx)
+If it's too complex to do data migration when the system is still live, we can put part of the system in read-only mode during data migration.
