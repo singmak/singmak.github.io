@@ -4,7 +4,7 @@ import { Typography, Container, Box, Grid } from '@mui/material';
 import MainLayout from '../components/MainLayout';
 
 const container = {
-  height: '100vh',
+  minHeight: '100vh',
   padding: '30px 0px',
 };
 
