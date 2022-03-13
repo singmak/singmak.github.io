@@ -42,7 +42,7 @@ const BlogListItem = ({ mdx }: { mdx: MdxNode }) => {
 
 const Blog = ({ data }: { data: AllMdx }) => {
   return (
-    <MainLayout pageTitle="Blog Posts">
+    <MainLayout pageTitle="Blog">
       <Container maxWidth="md" sx={{ marginTop: 5, marginBottom: 5 }}>
         <Grid container direction="column" rowSpacing={3}>
           {
