@@ -66,7 +66,7 @@ When we change the route from a Green environment to a Blue environment, the use
 The browser may cache the old version of the web application for too long. We can implement a mechanism so that the user's browser always loads the latest version of the web application.
 
 ### Mobile application
-A new version of a mobile application can take days to roll out to the users. Therefore, whenever we deploy a new version of a backend service, we need to make sure that APIs are still compatible with different versions of the mobile applications. On the other hand, we should also be careful about rolling back backend changes since it can break the newer version of the mobile app.
+A new version of a mobile application can take days to roll out to the users. Therefore, whenever we deploy a new version of a backend service, we need to make sure that APIs are still compatible with different versions of the mobile applications. On the other hand, we should also be careful about rolling back backend changes since it can break the newer version of the mobile app. In the worst-case scenario where we have to introduce changes of the backend that are not compatible with some versions of the mobile applications, we can block the usages of the app and show a dialog in the application to force the users to upgrade their app.
 
 ### Data migration
 It may not be a trivial task to do data migration without putting the system on maintenance mode since the users (or other systems) can still trigger to create new data or make changes to the data during data migration.
