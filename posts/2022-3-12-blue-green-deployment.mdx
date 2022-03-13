@@ -43,7 +43,7 @@ With this approach, the unit of the deployment is one service (or a stack of mul
 
 ### Disadvantages
 
-* More time and effort on doing releases, testing, and rolling back changes. Instead of these tasks altogether, we need to do those tasks for each service.
+* More time and effort on doing releases, testing, and rolling back changes. Instead of doing these tasks altogether in a single release, we need to do those tasks for each service since each service has its own release lifecycle.
 * More effort on maintaining backward compatibility, we need to make sure that the new changes in the service won't break the other services.
 * Rolling back changes is more difficult. If we roll back the changes of one service, we may also break some other services that depend on the new APIs.
 * More effort on setting up Blue-Green Deployment on every service
