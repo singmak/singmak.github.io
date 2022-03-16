@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { graphql } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -9,10 +9,13 @@ import { Mdx } from '../../types';
 import { Box, Container, Typography } from '@mui/material';
 
 import { Code } from '../../components/Code';
+import { logPage } from '../../analytics';
 
 const BlogPost = ({ data }: PageProps<Mdx>) => {
+  const pageTitle = data.mdx?.frontmatter?.title ?? 'Blog Post';
+  useEffect(() => logPage('BlogPost', pageTitle), []);
   return (
-    <MainLayout pageTitle={data.mdx?.frontmatter?.title ?? 'Blog'}>
+    <MainLayout pageTitle={pageTitle}>
       <Container maxWidth="md" sx={{
         padding: 5
       }}>
