@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { graphql, PageProps } from 'gatsby';
 import MainLayout from '../components/MainLayout';
 import { AllMdx, MdxNode } from '../types';
 import { Card, CardContent, CardMedia, Container, Grid, Typography, Chip, CardActions, Box } from '@mui/material';
 import { Link } from 'gatsby-theme-material-ui';
+
+import { analytics, logPage } from '../analytics';
 
 const BlogListItem = ({ mdx }: { mdx: MdxNode }) => {
   const meta = mdx?.frontmatter;
@@ -55,6 +57,7 @@ const Blog = ({ data }: { data: AllMdx }) => {
 };
 
 const Index = ({ data }: PageProps<AllMdx>) => {
+  useEffect(() => logPage('Index', 'index'), []);
   return (<Blog data={data} />);
 };
 

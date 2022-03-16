@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Typography, Container, Box, Grid } from '@mui/material';
 import MainLayout from '../components/MainLayout';
+import { logPage } from '../analytics';
 
 const container = {
   minHeight: '100vh',
@@ -16,7 +17,10 @@ const ABOUT = ['I am Sing Mak, a software engineer with 12 years experience, 5 y
 
 const TECHS = ['Typescript', 'Node.js', 'AWS Services', 'Docker', 'Nginx', 'ELK Stack', 'Jenkins', 'Serverless', 'Single-spa', 'Postgres database', 'Oracle database', 'Java', 'Keycloak', 'Android SDK', 'Kotlin', 'React', 'Next.js', 'Bootstrap', 'Material UI', 'Gatsby', 'Bash script'];
 
+
+
 const About = () => {
+  useEffect(() => logPage('About', 'about'), []);
   return (
     <MainLayout pageTitle="About">
       <Container maxWidth='md'>
