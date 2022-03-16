@@ -15,6 +15,7 @@ const MainLayout: React.FC<{ pageTitle: string }> = ({ pageTitle, children }) =>
     }}>
       <Helmet>
         <meta charSet="utf-8" />
+        <meta name="google-site-verification" content="0BOaKw-N8goBTlYnHzJWtb6Yn_4GeZjZHaVxq_RmV3E" />
         <title>Sing Mak&apos;s software engineering journey | {pageTitle}</title>
       </Helmet>
       <Header pageTitle={pageTitle} />
