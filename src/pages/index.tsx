@@ -32,7 +32,7 @@ const BlogListItem = ({ mdx }: { mdx: MdxNode }) => {
               {meta.description}
             </Typography>
           </CardContent>
-          <CardActions sx={{flexWrap: 'wrap'}} disableSpacing>
+          <CardActions sx={{ flexWrap: 'wrap', marginBottom: '-5px' }} disableSpacing>
             {meta.tags.map((tag) => (
               <Box key={tag} sx={{
                 borderLeft: '5px solid transparent',
