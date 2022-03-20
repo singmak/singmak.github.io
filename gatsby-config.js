@@ -1,7 +1,7 @@
 module.exports = {
     siteMetadata: {
-      title: `Sing Mak`,
-        siteUrl: `https://www.yourdomain.tld`,
+      title: `Sing Mak's software engineering journey`,
+      siteUrl: `https://singmak.github.io`,
     },
     plugins: [
       "gatsby-plugin-image",
@@ -9,6 +9,7 @@ module.exports = {
       "gatsby-remark-images",
       "gatsby-theme-material-ui",
       "gatsby-plugin-react-helmet",
+      "gatsby-plugin-sitemap",
       {
         resolve: "gatsby-source-filesystem",
         options: {
