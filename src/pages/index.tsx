@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { graphql, PageProps } from 'gatsby';
-import MainLayout from '../components/MainLayout';
+import PageWrapper from '../components/PageWrapper';
 import { AllMdx, MdxNode } from '../types';
 import { Card, CardContent, CardMedia, Container, Grid, Typography, Chip, CardActions, Box } from '@mui/material';
 import { Link } from 'gatsby-theme-material-ui';
 
-import { analytics, logPage } from '../analytics';
+import { logPage } from '../analytics';
+
+const PAGE_DESCRIPTION = 'I am Sing Mak. This is my tech blog. I blog about NodeJS, React, AWS, DevOps, Android development, or anything I learned recently.';
 
 const BlogListItem = ({ mdx }: { mdx: MdxNode }) => {
   const meta = mdx?.frontmatter;
@@ -44,7 +46,7 @@ const BlogListItem = ({ mdx }: { mdx: MdxNode }) => {
 
 const Blog = ({ data }: { data: AllMdx }) => {
   return (
-    <MainLayout pageTitle="Blog">
+    <PageWrapper pageTitle="Blog" description={PAGE_DESCRIPTION}>
       <Container maxWidth="md" sx={{ marginTop: 5, marginBottom: 5 }}>
         <Grid container direction="column" rowSpacing={3}>
           {
@@ -52,7 +54,7 @@ const Blog = ({ data }: { data: AllMdx }) => {
           }
         </Grid>
       </Container>
-    </MainLayout>
+    </PageWrapper>
   );
 };
 
