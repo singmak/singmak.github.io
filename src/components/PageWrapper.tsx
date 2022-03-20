@@ -8,7 +8,7 @@ import Header from './Header';
 import { Social } from './Social';
 import '../styles.css';
 
-const MainLayout: React.FC<{ pageTitle: string }> = ({ pageTitle, children }) => {
+const PageWrapper: React.FC<{ pageTitle: string, description?: string }> = ({ pageTitle, description, children }) => {
   return (
     <Box sx={{
       backgroundColor: '#e6f1f3'
@@ -16,6 +16,9 @@ const MainLayout: React.FC<{ pageTitle: string }> = ({ pageTitle, children }) =>
       <Helmet>
         <meta charSet="utf-8" />
         <meta name="google-site-verification" content="0BOaKw-N8goBTlYnHzJWtb6Yn_4GeZjZHaVxq_RmV3E" />
+        {description && (
+          <meta name="description" content={description} />
+        )}
         <title>Sing Mak&apos;s software engineering journey | {pageTitle}</title>
       </Helmet>
       <Header pageTitle={pageTitle} />
@@ -29,4 +32,4 @@ const MainLayout: React.FC<{ pageTitle: string }> = ({ pageTitle, children }) =>
   );
 };
 
-export default MainLayout;
+export default PageWrapper;

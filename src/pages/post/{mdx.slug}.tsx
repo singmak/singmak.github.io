@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-import MainLayout from '../../components/MainLayout';
+import PageWrapper from '../../components/PageWrapper';
 import { PageProps } from 'gatsby';
 import { Mdx } from '../../types';
 import { Box, Container, Typography } from '@mui/material';
@@ -15,7 +15,7 @@ const BlogPost = ({ data }: PageProps<Mdx>) => {
   const pageTitle = data.mdx?.frontmatter?.title ?? 'Blog Post';
   useEffect(() => logPage('BlogPost', pageTitle), []);
   return (
-    <MainLayout pageTitle={pageTitle}>
+    <PageWrapper pageTitle={pageTitle}>
       <Container maxWidth="md" sx={{
         padding: 5
       }}>
@@ -44,7 +44,7 @@ const BlogPost = ({ data }: PageProps<Mdx>) => {
           
         </Box>
       </Container>
-    </MainLayout>
+    </PageWrapper>
   );
 };
 
