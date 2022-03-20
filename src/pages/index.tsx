@@ -32,8 +32,16 @@ const BlogListItem = ({ mdx }: { mdx: MdxNode }) => {
               {meta.description}
             </Typography>
           </CardContent>
-          <CardActions>
-            {meta.tags.map((tag) => <Chip key={tag} label={tag} variant="outlined"/>)}
+          <CardActions sx={{flexWrap: 'wrap'}} disableSpacing>
+            {meta.tags.map((tag) => (
+              <Box key={tag} sx={{
+                borderLeft: '5px solid transparent',
+                borderRight: '5px solid transparent',
+                borderBottom: '10px solid transparent',
+              }}>
+                <Chip label={tag} variant="outlined"/>
+              </Box>
+            ))}
           </CardActions>
         </Box>
         {meta.imageUrl ? <CardMedia image={meta.imageUrl} sx={{
