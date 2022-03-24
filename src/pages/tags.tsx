@@ -15,7 +15,7 @@ const Tag = ({ tag }: { tag: string }) => {
       borderRight: '5px solid transparent',
       borderBottom: '10px solid transparent',
     }}>
-      <Chip label={tag} variant="solid" onClick={onTagClick}/>
+      <Chip label={tag} variant="filled" onClick={onTagClick}/>
     </Box>
   );
 };
