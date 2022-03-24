@@ -17,6 +17,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 const navigationLinks = [
   { name: 'Blog', href: '/' },
+  { name: 'Tags', href: '/tags' },
   // { name: 'Projects', href: '/projects' },
   { name: 'About', href: '/about' },
   // { name: 'Contact', href: '/contact' },

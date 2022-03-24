@@ -13,9 +13,15 @@ export type MdxNode = {
   body?: string,
 };
 
-export type AllMdx = {
+export type AllMdxNodes = {
   allMdx: {
     nodes: MdxNode[]
+  }
+};
+
+export type AllMdxGroup = {
+  allMdx: {
+    group: { fieldValue: string }[]
   }
 };
 
