@@ -11,7 +11,8 @@ import '../styles.css';
 const PageWrapper: React.FC<{ pageTitle: string, description?: string }> = ({ pageTitle, description, children }) => {
   return (
     <Box sx={{
-      backgroundColor: '#e6f1f3'
+      backgroundColor: '#e6f1f3',
+      minHeight: '100vh'
     }}>
       <Helmet>
         <meta charSet="utf-8" />
@@ -26,7 +27,9 @@ const PageWrapper: React.FC<{ pageTitle: string, description?: string }> = ({ pa
         <Social direction='column'/>
       </Box>
       <CssBaseline />
-      {children}
+      <Box sx={{ minHeight: '100vh' }}>
+        {children}
+      </Box>
       <Footer />
     </Box>
   );
