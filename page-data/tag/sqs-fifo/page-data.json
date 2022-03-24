@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tag-tsx",
+    "path": "/tag/sqs-fifo/",
+    "result": {"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"May 16, 2021","title":"AWS CDK Example: Process ordered events with AWS Lambda, SQS FIFO and SNS FIFO","description":"How to create a AWS Lambda function with AWS CDK","tags":["aws","lambda","aws-cdk","sqs-fifo"]},"id":"12856a54-ae91-59d0-8c3f-d2db353cb1c1","slug":"2021-5-16-sqs-fifo-lambda"}]}},"pageContext":{"tag":"sqs-fifo"}},
+    "staticQueryHashes": ["3159585216"]}
