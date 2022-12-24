@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-pages-tags-tsx",
     "path": "/tags/",
-    "result": {"data":{"allMdx":{"group":[{"fieldValue":"aws"},{"fieldValue":"aws-cdk"},{"fieldValue":"backend"},{"fieldValue":"cloudformation"},{"fieldValue":"database"},{"fieldValue":"deployment"},{"fieldValue":"devops"},{"fieldValue":"example"},{"fieldValue":"hasura"},{"fieldValue":"lambda"},{"fieldValue":"performance"},{"fieldValue":"serverless"},{"fieldValue":"sqs-fifo"},{"fieldValue":"xray"}]}},"pageContext":{}},
+    "result": {"data":{"allMdx":{"group":[{"fieldValue":"aws"},{"fieldValue":"aws-cdk"},{"fieldValue":"backend"},{"fieldValue":"cloudformation"},{"fieldValue":"database"},{"fieldValue":"deployment"},{"fieldValue":"devops"},{"fieldValue":"example"},{"fieldValue":"hasura"},{"fieldValue":"lambda"},{"fieldValue":"nginx"},{"fieldValue":"performance"},{"fieldValue":"serverless"},{"fieldValue":"sqs-fifo"},{"fieldValue":"xray"}]}},"pageContext":{}},
     "staticQueryHashes": ["3159585216"]}

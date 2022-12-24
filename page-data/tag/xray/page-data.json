@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-templates-tag-tsx",
     "path": "/tag/xray/",
-    "result": {"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"February 27, 2022","title":"Finding out the cold start time of a AWS Lambda function","description":"It's easy to find out the cold start time of Lambda functions with AWS X Ray","tags":["lambda","xray","performance"]},"id":"92895b10-f462-5762-89a6-b0c9f1dbd650","slug":"2022-2-27-lambda-cold-start"}]}},"pageContext":{"tag":"xray"}},
+    "result": {"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"February 27, 2022","title":"Finding out the cold start time of a AWS Lambda function","description":"It's easy to find out the cold start time of Lambda functions with AWS X Ray","tags":["lambda","xray","performance"]},"id":"154c685c-22a3-5acf-8280-26657a0f32a8","slug":"2022-2-27-lambda-cold-start"}]}},"pageContext":{"tag":"xray"}},
     "staticQueryHashes": ["3159585216"]}

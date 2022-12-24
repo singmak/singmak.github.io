@@ -1,3 +1,0 @@
-/*! For license information please see 663-df3d910e5195c54c14e5.js.LICENSE.txt */
-"use strict";(self.webpackChunksingsdev=self.webpackChunksingsdev||[]).push([[663],{7095:function(e,a,s){s.r(a),s.d(a,{default:function(){return d}});var n=s(7626);(0,n.KN)("firebase","9.6.8","app");var p={apiKey:"AIzaSyARR3v5bDpf0tvI2CeC6CmuNJL-Vwfsx6k",authDomain:"singmakdev.firebaseapp.com",databaseURL:void 0,projectId:"singmakdev",storageBucket:"singmakdev.appspot.com",messagingSenderId:"194358456508",appId:"1:194358456508:web:064af3b1e6c4a13ffea0b9",measurementId:"G-H0XE9QHKB9"},d=(0,n.ZF)(p)}}]);
-//# sourceMappingURL=663-df3d910e5195c54c14e5.js.map
