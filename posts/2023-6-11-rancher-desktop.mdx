@@ -1,0 +1,20 @@
+---
+title: "Rancher Desktop + nerdctl, replacement of Docker Desktop?"
+date: "2023-6-11"
+description: "It's important to keep learning."
+tags: ['devops','docker','kubernetes']
+---
+
+I am curious how Kubernetes can be run locally, so I did a bit searching and came across this youtube video:
+
+https://www.youtube.com/watch?v=evWPib0iNgY
+
+The video introduced the use of Rancher Desktop + nerdctl.
+
+I installed [Rancher Desktop] (which comes with nerdctl already) on my Macbook Pro and tried a little bit.
+
+I tried building Docker image, running containers with the same docker commands. All seems to work just the same as the Docker Desktop.
+
+One problem that I noticed is that if I try to map a port of the container to the host with a port that was being used by a stopped continer, the port forwarding doesn't work. One workaround is to remove the stopped container that has that port mapped.
+
+I will test more to see if it's truely a Docker Desktop replacement.
