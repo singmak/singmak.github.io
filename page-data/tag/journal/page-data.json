@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tag-tsx",
+    "path": "/tag/journal/",
+    "result": {"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"June 10, 2023","title":"Trying new things","description":"It's important to keep learning.","tags":["journal"]},"id":"c9e959b1-07ab-54e6-8d55-1d1436a12178","slug":"2023-6-10-alive-again"}]}},"pageContext":{"tag":"journal"}},
+    "staticQueryHashes": ["3159585216"]}
