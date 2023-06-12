@@ -1,0 +1,23 @@
+---
+title: "Identify the boundaries of microservices"
+date: "2023-06-12"
+description: "How large should a microservice be? Where to set the boundary?"
+tags: ['architecture', 'microservice']
+---
+
+At the beginning of this project, I was unaware of the potential size and complexity that an internal management system could reach. As a full-stack software engineer, this was my first experience working on such a comprehensive project. While I cannot definitively classify it as a large-scale system, it is undoubtedly larger than anything I had previously encountered. Over the course of three years, the source code expanded to encompass more than 30 git repositories, including both the backend API and frontend modules.
+
+The delineation of microservices was primarily based on different domains and functionalities. The architecture design was a collaborative effort, with my primary responsibility lying in the fundamental and initial design of the system. While there were some sound decisions made, there were also numerous mistakes along the way. One significant issue that I have identified in our current architecture design is the incorrect definition of service boundaries:
+
+## Some services contain APIs for multiple domains and products.
+
+Consequently, these services are managed by multiple teams due to the intermingling functionalities of different domains within the same services. As a result, the ownership of the service has become blurred. Deployment also poses a challenge since any changes made could potentially impact multiple domains and products, each owned by different teams. A team might make alterations specific to their product, but unintentionally affect the code used by other products owned by different teams.
+
+## Certain services would be better off merged into a single service.
+
+These services pertain to the same domain and products, and they consistently make API calls to one another. This unnecessary inter-service communication has a negative impact on performance. Additionally, due to the separation of services, the databases are also segregated, making data joins difficult and necessitating the implementation of synchronization mechanisms. This adds unnecessary complexity and maintenance costs.
+
+Unfortunately, it is not uncommon for relatively new projects to accumulate technical debt that must be addressed later. In our case, this was largely due to the team's lack of experience.
+
+---
+Thanks ChatGPT again for improving my writing :)
