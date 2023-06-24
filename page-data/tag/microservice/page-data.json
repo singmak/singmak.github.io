@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-templates-tag-tsx",
-    "path": "/tag/microservice/",
-    "result": {"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"June 12, 2023","title":"Identify the boundaries of microservices","description":"How large should a microservice be? Where to set the boundary?","tags":["architecture","microservice"]},"id":"9700b6e8-9337-5b56-9688-cd277710257e","slug":"2023-6-12-identify-the-boundaries-of-microservices"}]}},"pageContext":{"tag":"microservice"}},
-    "staticQueryHashes": ["3159585216"]}
+{"componentChunkName":"component---src-templates-tag-tsx","path":"/tag/microservice/","result":{"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"June 12, 2023","title":"Identify the boundaries of microservices","description":"How large should a microservice be? Where to set the boundary?","tags":["architecture","microservice"]},"id":"9700b6e8-9337-5b56-9688-cd277710257e","slug":"2023-6-12-identify-the-boundaries-of-microservices"}]}},"pageContext":{"tag":"microservice"}},"staticQueryHashes":["3159585216"]}

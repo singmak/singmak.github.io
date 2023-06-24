@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-templates-tag-tsx",
-    "path": "/tag/nginx/",
-    "result": {"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"December 18, 2022","title":"Nginx auth_request","description":"If you limit the access to your services/web pages with an external auth service, you can do that with Nginx auth_request.","tags":["devops","nginx","backend"]},"id":"c8410e7b-137c-5140-b42a-84e91bf795f4","slug":"2022-12-18-nginx-proxy-server"}]}},"pageContext":{"tag":"nginx"}},
-    "staticQueryHashes": ["3159585216"]}
+{"componentChunkName":"component---src-templates-tag-tsx","path":"/tag/nginx/","result":{"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"December 18, 2022","title":"Nginx auth_request","description":"If you limit the access to your services/web pages with an external auth service, you can do that with Nginx auth_request.","tags":["devops","nginx","backend"]},"id":"c8410e7b-137c-5140-b42a-84e91bf795f4","slug":"2022-12-18-nginx-proxy-server"}]}},"pageContext":{"tag":"nginx"}},"staticQueryHashes":["3159585216"]}

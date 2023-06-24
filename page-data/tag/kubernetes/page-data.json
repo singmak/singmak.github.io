@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-templates-tag-tsx",
-    "path": "/tag/kubernetes/",
-    "result": {"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"June 11, 2023","title":"Rancher Desktop + nerdctl, replacement of Docker Desktop?","description":"Rancher Desktop + nerdctl, replacement of Docker Desktop?","tags":["devops","docker","kubernetes"]},"id":"17b6956d-ca7e-5fc2-9e7e-677ca2f8cd92","slug":"2023-6-11-rancher-desktop"}]}},"pageContext":{"tag":"kubernetes"}},
-    "staticQueryHashes": ["3159585216"]}
+{"componentChunkName":"component---src-templates-tag-tsx","path":"/tag/kubernetes/","result":{"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"June 11, 2023","title":"Rancher Desktop + nerdctl, replacement of Docker Desktop?","description":"Rancher Desktop + nerdctl, replacement of Docker Desktop?","tags":["devops","docker","kubernetes"]},"id":"17b6956d-ca7e-5fc2-9e7e-677ca2f8cd92","slug":"2023-6-11-rancher-desktop"}]}},"pageContext":{"tag":"kubernetes"}},"staticQueryHashes":["3159585216"]}

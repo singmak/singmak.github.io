@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-templates-tag-tsx",
-    "path": "/tag/cicd/",
-    "result": {"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"June 13, 2023","title":"How to release faster and better?","description":"Automation of the release process.","tags":["cicd"]},"id":"4387baa0-339d-50da-bb4c-d69628e92559","slug":"2023-6-13-cicd"}]}},"pageContext":{"tag":"cicd"}},
-    "staticQueryHashes": ["3159585216"]}
+{"componentChunkName":"component---src-templates-tag-tsx","path":"/tag/cicd/","result":{"data":{"allMdx":{"nodes":[{"frontmatter":{"date":"June 13, 2023","title":"How to release faster and better?","description":"Automation of the release process.","tags":["cicd"]},"id":"4387baa0-339d-50da-bb4c-d69628e92559","slug":"2023-6-13-cicd"}]}},"pageContext":{"tag":"cicd"}},"staticQueryHashes":["3159585216"]}
