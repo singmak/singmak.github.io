@@ -1,0 +1,18 @@
+---
+title: "One RDS per each database or one RDS for all the databases?"
+date: "2023-07-02"
+description: "If you have multiple databases, should you put them all in a single AWS instance?"
+tags: ['aws']
+---
+
+In micro-service architectures, each backend service should have its own databases. It's common to have multiple databases in a system with many services.
+
+If you choose AWS RDS as your database hosting option, you can decide whether to store all your databases in a single RDS instance or use multiple RDS instances.
+
+There are advantages and disadvantages to both choices.
+
+If you create all your databases in a single RDS instance, the resources of the instance can be shared among the different databases, resulting in lower costs. Additionally, there will be fewer RDS instances to maintain and manage.
+
+However, this approach is considered an anti-pattern in micro-service architecture. The reason is that the databases are no longer independent. If you need to upgrade the database, all of them have to be upgraded at the same time. If one database uses too many resources, it affects the performance of the other databases in the same RDS instance.
+
+Lately, I've been learning about monitoring the performance of RDS instances. AWS RDS's [Performance Insight](https://www.youtube.com/watch?v=4462hcfkApM) is an excellent tool for this purpose. It can help identify which SQL queries, users, or databases are causing performance issues in the RDS instance.
