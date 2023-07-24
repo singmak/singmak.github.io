@@ -31,14 +31,12 @@ const Tags = ({ data }: PageProps<AllMdxGroup>) => {
   );
 };
 
-export const query = graphql`
-  query {
-    allMdx(sort: {fields: frontmatter___date, order: DESC}) {
-      group(field: frontmatter___tags) {
-        fieldValue
-      }
+export const query = graphql`{
+  allMdx(sort: {frontmatter: {date: DESC}}) {
+    group(field: {frontmatter: {tags: SELECT}}) {
+      fieldValue
     }
   }
-`;
+}`;
 
 export default Tags;

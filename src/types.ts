@@ -8,7 +8,9 @@ export type MdxFrontmatter = {
 
 export type MdxNode = {
   id?: string,
-  slug?: string,
+  fields?: {
+    slug?: string,
+  },
   frontmatter?: MdxFrontmatter,
   body?: string,
 };

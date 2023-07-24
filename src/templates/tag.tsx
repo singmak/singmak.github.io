@@ -21,10 +21,9 @@ const Tag = ({ data, path, pageContext }: PageProps<AllMdxNodes, { tag: string }
   );
 };
 
-export const query = graphql`
-query($tag: String) {
+export const query = graphql`query ($tag: String) {
   allMdx(
-    sort: {fields: frontmatter___date, order: DESC}
+    sort: {frontmatter: {date: DESC}}
     filter: {frontmatter: {tags: {eq: $tag}}}
   ) {
     nodes {
@@ -35,10 +34,8 @@ query($tag: String) {
         tags
       }
       id
-      slug
     }
   }
-}
-`;
+}`;
 
 export default Tag;
