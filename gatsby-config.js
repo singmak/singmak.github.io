@@ -3,6 +3,7 @@ module.exports = {
       title: `Sing Mak's software engineering journey`,
       siteUrl: `https://singmak.github.io`,
     },
+    trailingSlash: `legacy`,
     plugins: [
       "gatsby-plugin-image",
       "gatsby-plugin-sharp",
@@ -27,14 +28,15 @@ module.exports = {
       {
         resolve: `gatsby-plugin-mdx`,
         options: {
-          gatsbyRemarkPlugins: [
-            {
+          mdxOptions: {
+            remarkPlugins: [{
               resolve: `gatsby-remark-images`,
               options: {
                 maxWidth: 1200,
               },
-            },
-          ],
+            }],
+            rehypePlugins: [],
+          }
         },
       },
       {
