@@ -33,7 +33,7 @@ const BlogPost = ({ data, children }: PageProps<Mdx>) => {
         }}>
           <MDXProvider
             components={{
-              code: Code,
+              code: Code
             }}
           >
             {children}

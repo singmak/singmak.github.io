@@ -19,35 +19,49 @@ However, there's a challenge - the inventory database doesn't hold product detai
 
 Consequently, the frontend faces the task of querying information from both services and aggregating it on the user interface. It must retrieve product names and manufacturers from the product catalog service and combine them with the corresponding inventory data obtained from the inventory service to create the complete list. This data aggregation process can be complex and requires careful handling to ensure seamless user experience.
 
-```mermaid
-graph TB
-    C(Web Client)--Get-->INV(Inventory Service)
-    C--Get-->PRO(Product Catalog Service)
+#### Entities
 
-    subgraph INVD[Inventory Database]
-        INT[Inventory Table]
-    end
-    subgraph PROD[Product Database]
-        PT[Product Table]
-    end
+```plantuml
+@startuml
+Entity Product {
+    id (PK)
+    name
+    manufacturer
+}
+Entity Inventory {
+    id (PK)
+    product_id
+    quantity
+}
 
-    INV--Read/Write-->INVD["fa:fa-database" Invenotory Database]
-    PRO--Read/Write-->PROD["fa:fa-database" Product Database]
+Product "1" -- "many" Inventory
+
+@enduml
 ```
 
-```mermaid
-erDiagram
-    Product ||--o{ Inventory : has
-    Product {
-        uuid id PK
-        string name
-        string manufacturer
-    }
-    Inventory {
-        uuid id PK
-        uuid product_id
-        int quantity
-    }
+#### Components
+
+```plantuml
+@startuml
+
+[Frontend] as C
+[Inventory Service] as INV
+[Product Service] as PT
+
+database "Inventory Database" as INVD {
+  folder "Inventory Table"
+}
+
+database "Product Database" as PDD {
+  folder "Product Table"
+}
+
+C --> INV: Read
+C --> PT: Read
+INV --> INVD: Read/Write
+PT --> PDD: Read/Write
+
+@enduml
 ```
 
 ### Filtering Inventory data with the products data
@@ -56,16 +70,18 @@ Filtering inventory data using product IDs is easy. But, if you want to filter b
 
 This means more steps and requests, which can slow down data retrieval. It might not be the best way, especially for a large number of products, to filter inventory data using different product properties owned by another service.
 
-```mermaid
-sequenceDiagram
-    participant C as Frontend
-    participant INV as Inventory Service
-    participant PRO as Product Catalog Service
-    C->>PRO: GET /products?manufacturer=[Selected Manufactorer]
-    PRO-->>C: Status 200, Products Ids, names
-    C->>INV: GET /inventories?product_ids=[Product Ids]&offset=0&limit=50
-    INV-->>C: Status 200, Inventories with Product Ids
-    C->>C: Aggregate the Inventories and Products data and display them in the same list
+```plantuml
+@startuml
+actor Frontend as C
+participant "Product Catalog Service" as PRO
+participant "Inventory Service" as INV
+
+C -> PRO: GET /products?manufacturer=[Selected Manufacturer]
+PRO -->> C: Status 200, Products Ids, names
+C -> INV: GET /inventories?product_ids=[Product Ids]&offset=0&limit=50
+INV -->> C: Status 200, Inventories with Product Ids
+C -> C: Aggregate the Inventories and Products data and display them in the same list
+@enduml
 ```
 
 ### Sorting Inventory data with the products data
@@ -76,16 +92,18 @@ Here's the process: the frontend first retrieves the product ordering informatio
 
 In such cases, sorting inventory data by product name using this method may not be practical or feasible. There's a need to find alternative solutions to enhance the sorting process and improve overall system performance.
 
-```mermaid
-sequenceDiagram
-    participant C as Frontend
-    participant INV as Inventory Service
-    participant PRO as Product Catalog Service
-    C->>PRO: GET /products?orderby=name
-    PRO-->>C: Status 200, Products Ids
-    C->>INV: GET /inventories?product_order_ids=[Product Ids]&offset=0&limit=50
-    INV-->>C: Status 200, Inventories with Product Ids
-    C->>C: Aggregate the Inventories and Products data and display them in the same list
+```plantuml
+@startuml
+actor Frontend as C
+participant "Product Catalog Service" as PRO
+participant "Inventory Service" as INV
+
+C -> PRO: GET /products?orderby=name
+PRO -->> C: Status 200, Products Ids
+C -> INV: GET /inventories?product_order_ids=[Product Ids]&offset=0&limit=50
+INV -->> C: Status 200, Inventories with Product Ids
+C -> C: Aggregate the Inventories and Products data and display them in the same list
+@enduml
 ```
 
 ## Challenges with this Approach
@@ -106,22 +124,32 @@ The BFF (Backend For the Frontend) pattern offers an effective solution to addre
 
 Let's revisit the example mentioned earlier and see how it fits into the BFF pattern:
 
-```mermaid
-graph TB
-    C(Frontend)--Get-->BFF(BFF service)
-    BFF--Get-->INV(Inventory Service)
-    BFF--Get-->PRO(Product Catalog Service)
+```plantuml
+@startuml
 
-    subgraph INVD[Inventory Database]
-        INT[Inventory Table]
-    end
-    subgraph PROD[Product Database]
-        PT[Product Table]
-    end
+[Frontend] as C
+[BFF Service] as BFF
+[Inventory Service] as INV
+[Product Service] as PT
 
-    INV--Read/Write-->INVD
-    PRO--Read/Write-->PROD
-    BFF--Read/Write-->CACHE["fa:fa-database" Redis Cache]
+database "CACHE" 
+
+database "Inventory Database" as INVD {
+  folder "Inventory Table"
+}
+
+database "Product Database" as PDD {
+  folder "Product Table"
+}
+
+C --> BFF: Read
+BFF --> INV: Read
+BFF --> PT: Read
+INV --> INVD: Read/Write
+PT --> PDD: Read/Write
+BFF -> CACHE: Read/Write
+
+@enduml
 ```
 
 In this BFF architecture, the Frontend communicates exclusively with the BFF service. The BFF service then interacts with the Product Catalog Service and the Inventory Service to retrieve the necessary data. It aggregates this data and provides a unified interface to the Frontend, shielding it from the complexities of multiple backend services.
