@@ -1,0 +1,47 @@
+---
+title: "How to plan VPC CIDR block?"
+date: "2023-10-15"
+description: "It's important to carefully plan the CIDR block creating new VPC in AWS."
+tags: ['aws']
+---
+
+It's important to carefully plan the CIDR block creating new VPC in AWS for a couple reasons:
+
+1. Provide enough IP addresses for all the resources that will be live inside.
+2. Avoid collision with the IP CIDR blocks of the other VPC or network.
+3. CIDR is hard to be changed once the VPC is created.
+
+### 1. Make sure that it's a private IP range
+
+First, The range must be within the range reserved for private ips according to the standard. If we choose a range that overlaps with the public IPs range, it will cause issues in security and routing.
+
+According to standards set forth in Internet Engineering Task Force (IETF) document RFC-1918 , the following IPv4 address ranges are reserved by the IANA for private internets, and are not publicly routable on the global internet:
+
+1. 10.0.0.0/8 IP addresses: 10.0.0.0 – 10.255.255.255
+2. 172.16.0.0/12 IP addresses: 172.16.0.0 – 172.31.255.255
+3. 192.168.0.0/16 IP addresses: 192.168.0.0 – 192.168.255.255
+
+As you can see from above, 10.0.0.0/8 provided the largest range of IPs, 172.16.0.0/12 provided medium size of range while the 192.168.0.0/16 provided the smallest amount of IPS. 
+We can choose the range according to number of the resources that will live inside the VPC.
+
+### 2. Define a pattern to follow in choosing a CIDR for a VPC
+
+It's important to have a pattern that everyone in the team or organization can follow to avoid the IP collision.
+
+For example, we can first define the CIDR blocks for each environment like this:
+
+Assuming we will have 4 VPCs for each environment, 10 subnets for each VPC and each subnets need to have 256 allocated IPs. This makes each environment require 4 x 10 x 256 = 10240 IPs.
+
+DEV - 172.18.0.0/18
+
+UAT - 172.18.64.0/18
+
+PROD - 172.18.128.0/18
+
+### 3. Do not underoverprovision or overprovision the CIDR
+
+Underprovisioning the CIDR block would cause issues in provisioning new IP to the resources and overprovisioning the CIDR could exhaust the private IP space quickly and make it difficult to create new VPC later on.
+
+### 4. Check the CIDR of the on premise network and any networks of the external services
+
+We should list down all the CIDR blocks that are being used in the premise network and also the IP range of any external / Cloud networks that the VPCs may need to peer with to avoid choosing the same CIDR of these networks.
