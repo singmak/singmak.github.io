@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { graphql } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import PageWrapper from '../../components/PageWrapper';
 import { PageProps } from 'gatsby';
@@ -11,7 +10,7 @@ import { Box, Container, Typography } from '@mui/material';
 import { Code } from '../../components/Code';
 import { logPage } from '../../analytics';
 
-const BlogPost = ({ data }: PageProps<Mdx>) => {
+const BlogPost = ({ data, children }: PageProps<Mdx>) => {
   const pageTitle = data.mdx?.frontmatter?.title ?? 'Blog Post';
   useEffect(() => logPage('BlogPost', pageTitle), []);
   return (
@@ -34,12 +33,10 @@ const BlogPost = ({ data }: PageProps<Mdx>) => {
         }}>
           <MDXProvider
             components={{
-              code: Code,
+              code: Code
             }}
           >
-            <MDXRenderer>
-              {data.mdx?.body ?? ''}
-            </MDXRenderer>
+            {children}
           </MDXProvider>
           
         </Box>
@@ -56,7 +53,6 @@ export const query = graphql`
         date(formatString: "MMMM D, YYYY")
         description
       }
-      body
     }
   }
 `;

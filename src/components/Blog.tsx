@@ -30,7 +30,7 @@ const BlogListItem = ({ mdx }: { mdx: MdxNode }) => {
       }}>
         <Box>
           <CardContent>
-            <Link to={`/post/${mdx.slug}`}>
+            <Link to={`/post${mdx.fields?.slug}`}>
               <Typography variant="h5" paragraph>
                 {meta.title}
               </Typography>

@@ -1,5 +1,6 @@
 const _ = require("lodash");
 const path = require("path");
+const { createFilePath } = require('gatsby-source-filesystem');
 
 exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
   if (stage === 'build-html') {
@@ -16,20 +17,31 @@ exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
   }
 }
 
+
+
+exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
+  if (node.internal.type === 'Mdx') {
+    createNodeField({
+      node,
+      name: 'slug',
+      value: createFilePath({ node, getNode })
+    });
+  }
+};
+
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
 
   const tagTemplate = path.resolve("src/templates/tag.tsx")
 
-  const result = await graphql(`
-  {
-    allMdx(sort: {fields: frontmatter___date, order: DESC}) {
-      group(field: frontmatter___tags) {
-        fieldValue
-      }
+  const result = await graphql(`{
+  allMdx(sort: {frontmatter: {date: DESC}}) {
+    group(field: {frontmatter: {tags: SELECT}}) {
+      fieldValue
     }
   }
-  `);
+}`);
 
   // handle errors
   if (result.errors) {

@@ -19,21 +19,21 @@ const Index = ({ data }: PageProps<AllMdxNodes>) => {
   );
 };
 
-export const query = graphql`
-  query {
-    allMdx(sort: {fields: frontmatter___date, order: DESC}) {
-      nodes {
-        frontmatter {
-          date(formatString: "MMMM D, YYYY")
-          title
-          description
-          tags
-        }
-        id
+export const query = graphql`{
+  allMdx(sort: {frontmatter: {date: DESC}}) {
+    nodes {
+      frontmatter {
+        date(formatString: "MMMM D, YYYY")
+        title
+        description
+        tags
+      }
+      id
+      fields {
         slug
       }
     }
   }
-`;
+}`;
 
 export default Index;
