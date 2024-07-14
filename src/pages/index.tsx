@@ -1,17 +1,7 @@
-import React, { useEffect } from 'react';
-import { AllMdxNodes } from '../types';
-import { logPage } from '../analytics';
-import PageWrapper from '../components/PageWrapper';
-import { Container } from '@mui/material';
+import { navigate } from 'gatsby';
 
-const Index = ({ data }: PageProps<AllMdxNodes>) => {
-  useEffect(() => logPage('Index', 'index'), []);
-  return (
-    <PageWrapper pageTitle="Blog" description="Home">
-      <Container maxWidth="md" sx={{ marginTop: 5, marginBottom: 5 }}>
-      </Container>
-    </PageWrapper>
-  );
+const Index = () => {
+  if (typeof window !== 'undefined') navigate('/blog');
 };
 
 export default Index;

@@ -2,6 +2,7 @@ const _ = require("lodash");
 const path = require("path");
 const { createFilePath } = require('gatsby-source-filesystem');
 
+
 exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
   if (stage === 'build-html') {
     actions.setWebpackConfig({
@@ -105,13 +106,4 @@ const createBlogListPages = async ({ actions, graphql, reporter }) => {
 exports.createPages = async ({ actions, graphql, reporter }) => {
   await createTagPages({ actions, graphql, reporter });
   await createBlogListPages({ actions, graphql, reporter });
-
-  const { createRedirect } = actions
-
-  createRedirect({
-    fromPath: `/`,
-    toPath: `/blog/`,
-    redirectInBrowser: true,
-    isPermanent: true,
-  })
 }

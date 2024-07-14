@@ -21,6 +21,7 @@ const Tag = ({ tag }: { tag: string }) => {
 
 const BlogListItem = ({ mdx }: { mdx: MdxNode }) => {
   const meta = mdx?.frontmatter;
+  console.log('meta', meta);
   if (!meta) return null;
   return (
     <Grid item>

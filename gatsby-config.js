@@ -59,6 +59,7 @@ module.exports = {
         ],
         display: 'swap'
       }
-    }
+    },
+    "gatsby-plugin-client-side-redirect"
   ]
 };
