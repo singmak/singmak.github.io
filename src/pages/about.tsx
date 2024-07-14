@@ -9,13 +9,13 @@ const container = {
   padding: '30px 0px',
 };
 
-const ABOUT = ['I am Sing Mak, a software engineer with 12 years experience, 5 years of Android development experience, and more than 3.5 years of full-stack development experience.',
-  'Since I was a kid, I always like creating things. I built small games with Adobe Flash for me and my little brother to play together. I also remember I created a game characters mod for Little Fighter 2, a popular fighting game among kids at that time, and shared the game mod with other LF2 players.',
-  'I studied Computer Science at University of Science and Technology and became a software engineer after graduation. In the first few years of my career, I mainly developed for the web and different smart TV platforms. After that, I got interested in Android development and pursued a career in Android development, and was involved in the development of some media apps and messaging apps. Many years passed, here I am now. I became a full-stack developer who needs to develop anything that the projects required, no matter it\'s frontend, backend, AWS services, or DevOps. To be honest, I didn\'t plan to become a full-stack developer. I became one mainly because I got the opportunity and I thought it was a very good opportunity for me to broaden my expertise after doing Android development for so many years.',
-  'My main focus now is to build and maintain services that are reliable, secure, scalable, and can cope with changes well. I am also quite interested in DevOps topics such as infrastructure deployment and CICD.',
-  'Now I am working hard to build and write on this blog. While it takes time to research and write a post, it helps me to think more and understand the topics better. I feel like I really own the knowledge every time I finish a new post.'];
+const ABOUT = ['I am Sing Mak, a principal software engineer with 15 years experience in the industry.',
+  'I\'ve always loved coding, ever since I was a kid. It started with simple Windows BAT files that I used to create menus for choosing DOS games. As a kid, I also enjoyed making small games with Adobe Flash and diving into game mods.',
+  'I studied Computer Science at the University of Science and Technology. After graduating, I started my career focusing mainly on web development and creating apps for different smart TV platforms. My interest then shifted to Android development, where I had the chance to work on several media and messaging apps.',
+  'Over time, I evolved into a full-stack developer. This role has me juggling various aspects of software development, from front-end to back-end, along with managing AWS services, deployment, and monitoring.',
+  'Now, I find myself in the role of a principal software engineer. My job is to oversee the architecture and development of our software projects. I make sure everything we build is scalable, secure, and maintainable. I also keep our team aligned with the best practices and standards in the industry.'];
 
-const TECHS = ['Typescript', 'Node.js', 'AWS Services', 'Docker', 'Nginx', 'ELK Stack', 'Jenkins', 'Serverless', 'Single-spa', 'Postgres database', 'Oracle database', 'Java', 'Keycloak', 'Android SDK', 'Kotlin', 'React', 'Next.js', 'Bootstrap', 'Material UI', 'Gatsby', 'Bash script'];
+const TECHS = ['Typescript', 'Node.js', 'AWS Services', 'Docker', 'Nginx', 'ELK Stack', 'Jenkins', 'Serverless', 'Single-spa', 'Postgres database', 'Oracle database', 'Java', 'Keycloak', 'Android SDK', 'React', 'Next.js', 'Bootstrap', 'Material UI', 'Gatsby', 'Bash script', 'ArgoCD', 'Kubernetes', 'Helm', 'Prometheus', 'Grafana', 'Jaeger', 'ELK Stack'];
 
 const DESCRIPTION = `${ABOUT[0]} ${ABOUT[3]}`;
 
