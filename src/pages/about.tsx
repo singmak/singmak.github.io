@@ -9,7 +9,7 @@ const container = {
   padding: '30px 0px',
 };
 
-const ABOUT = ['I am Sing Mak, a principal software engineer with 15 years experience in the industry.',
+const ABOUT = ['I\'m Sing Mak, a Principal Software Engineer with over 15 years of experience in the tech industry.',
   'I\'ve always loved coding, ever since I was a kid. It started with simple Windows BAT files that I used to create menus for choosing DOS games. As a kid, I also enjoyed making small games with Adobe Flash and diving into game mods.',
   'I studied Computer Science at the University of Science and Technology. After graduating, I started my career focusing mainly on web development and creating apps for different smart TV platforms. My interest then shifted to Android development, where I had the chance to work on several media and messaging apps.',
   'Over time, I evolved into a full-stack developer. This role has me juggling various aspects of software development, from front-end to back-end, along with managing AWS services, deployment, and monitoring.',
