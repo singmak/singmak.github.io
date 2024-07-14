@@ -31,6 +31,7 @@ const BlogPost = ({ data, children }: PageProps<Mdx>) => {
             background: '#fff'
           }
         }}>
+          <div></div>
           <MDXProvider
             components={{
               code: Code
@@ -38,7 +39,7 @@ const BlogPost = ({ data, children }: PageProps<Mdx>) => {
           >
             {children}
           </MDXProvider>
-          
+
         </Box>
       </Container>
     </PageWrapper>

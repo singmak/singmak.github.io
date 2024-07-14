@@ -19,10 +19,10 @@ const PaginationControl = ({
 }) => {
   return (
     <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
-      <Link to={currentPage === 2 ? '/blog' : `/blog/${currentPage - 1}`} sx={{ textDecoration: 'none' }}>
+      <Link to={currentPage === 1 ? '' : (currentPage === 2 ? '/blog' : `/blog/${currentPage - 1}`)} sx={{ textDecoration: 'none' }}>
         <Button variant="contained" color="primary" disabled={currentPage === 1}>Previous</Button>
       </Link>
-      <Link to={`/blog/${currentPage + 1}`} sx={{ textDecoration: 'none' }}>
+      <Link to={currentPage === numberOfPages ? '' : `/blog/${currentPage + 1}`} sx={{ textDecoration: 'none' }}>
         <Button variant="contained" color="primary" disabled={currentPage === numberOfPages}>Next</Button>
       </Link>
     </Container>

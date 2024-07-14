@@ -1,0 +1,85 @@
+---
+title: "Choosing the opensource software for system Observability"
+date: "2023-07-24"
+description: "We should choose the right tools for the right jobs. When it comes to system observability. The tools that should be choosen is largely based on the system architecture and the things that you want to observe in the system."
+tags: ['architecture']
+---
+
+In simple terms, **Observability** refers to the ability to understand the internal state of a system. It enables us to gain insights into the activities within the infrastructure, system components, and services. Observability facilitates the monitoring of system performance, as well as the diagnosis and troubleshooting of issues. It also allows for the enhancement of the system based on both real-time and historical data collected. For any system, observability is a crucial component.
+
+Observability involves three pillars: Logs, Metrics, and Traces.
+
+Logs: Each log represents a record of system events or errors, serving as a detailed chronicle of system activities.
+
+Metrics: A metric measures a specific state of the system, such as CPU utilization or storage capacity, providing quantifiable data on system performance.
+
+Traces: A trace documents the route a request or transaction takes through the system. By instrumenting traces, we can analyze and understand how various services and components contribute to the processing of requests or transactions.
+
+Different cloud providers offer their own observability services. For example, AWS provides CloudWatch and X-Ray. One advantage of AWS's services is that they are managed solutions, which eliminates the need for user management and integrates seamlessly with other AWS services.
+
+However, AWS's observability services can sometimes be limited and may lead to vendor lock-in. Additionally, while CloudWatch integrates with Amazon EKS, it may not provide the same level of detail as tools like Prometheus, which are specifically designed for monitoring and alerting.
+
+So, if we want to go for open source tools for building the observability for the system, which tools should we choose?
+
+## Logs
+
+1. ELK/EFK
+2. SigNoz
+3. Grafana Loki
+
+
+### EKS stack
+
+Streaming logs from CloudWatch to EKS stack
+
+1. Log Ingestion
+Supported Sources: Ensure the service can ingest logs from all the sources you need, such as servers, applications, databases, and cloud services.
+Log Volume and Velocity: Assess the service's capability to handle the volume and velocity of logs your systems generate.
+2. Log Storage
+Retention Policies: Check if you can configure retention policies that align with your data governance and compliance requirements.
+Storage Scalability: Ensure the service can scale storage as your data grows.
+Data Compression and Optimization: Evaluate mechanisms for data compression and optimization to manage costs and performance.
+3. Search and Query Capabilities
+Query Language: Look for powerful and flexible query languages that allow you to retrieve and analyze log data efficiently.
+Search Performance: Consider the speed of search operations, especially when dealing with large volumes of data.
+4. Real-Time Processing
+Live Tail: Check for features like live tailing of logs for real-time monitoring.
+Streaming Analytics: Assess the ability to perform real-time analytics on streaming log data.
+5. Alerting and Notifications
+Alert Rules: Ensure you can create custom alerting rules based on specific log patterns or anomalies.
+Notification Channels: Look for integration with various notification channels such as email, SMS, Slack, etc.
+6. Data Analysis and Visualization
+Dashboards: Evaluate the availability and customization options of dashboards for visualizing log data.
+Reporting Tools: Check if there are tools for generating reports for audits, performance monitoring, etc.
+7. Integration with Other Tools
+Compatibility: Ensure compatibility with other tools in your tech stack, such as incident management systems, analytics platforms, and security tools.
+API Access: Look for robust API access to integrate with custom applications or automate workflows.
+8. Security and Compliance
+Data Security: Assess the security measures in place to protect log data, including encryption at rest and in transit.
+Compliance Standards: Verify that the service complies with relevant regulations (e.g., GDPR, HIPAA, PCI-DSS) that apply to your industry.
+9. Reliability and Availability
+Service Level Agreements (SLAs): Review the SLAs to understand the guaranteed uptime and performance.
+Redundancy and Failover: Check the mechanisms for data redundancy and service failover to ensure continuous operation.
+10. Scalability and Performance
+Horizontal Scaling: Ensure the service can scale horizontally to handle increases in log data and query load.
+Load Balancing: Consider how the service manages load balancing to maintain performance.
+11. Cost Efficiency
+Pricing Structure: Understand the pricing structure, including costs based on data ingestion, storage, and query load.
+Cost Predictability: Evaluate whether the pricing model offers predictability as your log volume and query complexity grow.
+12. User Experience and Support
+Ease of Use: Consider the user interface and overall ease of use of the service.
+Customer Support: Evaluate the quality of customer support, including availability, responsiveness, and technical expertise.
+
+
+
+
+
+## Metrics
+
+### Prometheus
+
+## Tracing
+
+Jeager
+
+Ziplin

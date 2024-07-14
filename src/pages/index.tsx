@@ -7,7 +7,7 @@ import { Container } from '@mui/material';
 const Index = ({ data }: PageProps<AllMdxNodes>) => {
   useEffect(() => logPage('Index', 'index'), []);
   return (
-    <PageWrapper pageTitle="Blog" description={PAGE_DESCRIPTION}>
+    <PageWrapper pageTitle="Blog" description="Home">
       <Container maxWidth="md" sx={{ marginTop: 5, marginBottom: 5 }}>
       </Container>
     </PageWrapper>
