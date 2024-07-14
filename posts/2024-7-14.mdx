@@ -1,0 +1,31 @@
+---
+title: "Trying out Pino"
+date: "2023-10-15"
+description: "Trying to find a good logger that can send logs to the Logstash server through TCP socket"
+tags: ['aws']
+---
+
+I am looking for a logger that won't add any overhead to the applications and can reliably send logs to the Logstash.
+
+After doing a bit searching. I found [Pino](https://github.com/pinojs/pino), which claim itself to be the logger with the [best performance](https://github.com/pinojs/pino/blob/main/docs/benchmarks.md).
+
+Pino itself doesn't have the ability to send logs with TCP. We need to use a custom [transport](https://github.com/pinojs/pino/blob/main/docs/transports.md). In the documentation, it mentioned that:
+
+```
+The way Pino generates logs:
+
+1. Reduces the impact of logging on an application to the absolute minimum.
+2. Gives greater flexibility in how logs are processed and stored.
+```
+
+also it mentioned that `transport code will be executed in a separate worker thread. The main thread will write logs to the worker thread, which will write them to the stream returned from the function exported from the transport file/module.`
+
+Based on what it claims, Pino doesn't send logs on the mainthread and so it shouldn't block any application logic when the logs are being sent.
+
+[pino-socket](https://github.com/pinojs/pino-socket) is one of those Pino transport library that allow us to send logs with TCP.
+
+I went through the [codes](https://github.com/pinojs/pino-socket/blob/master/lib/TcpConnection.js) of the `pino-socket` library to understand how the library handle the TCP connections in sending the logs. I noticed a few things:
+
+1. It uses a recovery queue for keeping the messages that couldn't be sent due to TCP connection errors
+2. Connection to the server and recovery of errors are retried with a backoff strategy(which can be customized).
+
